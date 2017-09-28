@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    environment:
+      LINUX_VERSION:
+        # DEBIAN_JESSIE (8) or
+        # DEBIAN_STRETCH (9) or
+        # UBUNTU_TRUSTY (14.04) or
+        # UBUNTU_XENIAL (16.04)
+        
+      JAVA: true
+        # comment out if you don't need Java
+        
+      NODE:
+        # select a version number, i.e., 8.0, from https://nodejs.org/dist, or comment out if you don't need Node
+        
+      PYTHON:
+        # select a version number, i.e., 2.7.13, from https://python.org/ftp/python, or comment out if you don't need Python
+        
+      RUBY:
+        # select a version number, i.e., 2.3.4, from https://cache.ruby-lang.org/pub/ruby, or comment out if you don't need Ruby
+        
+      PHP:
+        # select a version number, i.e, 7.1.5, from http://se1.php.net/releases
+        # 
+        
+      MYSQL_CLIENT: true
+        # comment out if you don't need the MySQL client
+        
+      POSTGRES_CLIENT: true
+        # comment out if you don't need the Postgres client
