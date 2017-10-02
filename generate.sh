@@ -33,6 +33,10 @@ if [ ! -e $PYTHON_VERSION ] ; then
     make install"
 fi
 
+if [ ! -e $PHP_VERSION ] ; then
+    wget "http://php.net/distributions/php-${PHP_VERSION}.tar.xz"
+fi
+
 if [ ! -e $JAVA ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
