@@ -5,7 +5,9 @@ workflows:
       - build-image:
           context: org-global
           
-      - test-image
+      - test-image:
+          requires:
+            build-image
 
 version: 2
 jobs:
