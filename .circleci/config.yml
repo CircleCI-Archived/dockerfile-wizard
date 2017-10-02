@@ -39,7 +39,7 @@ jobs:
       
       - run: |
           chmod +x generate.sh
-          ./generate.sh > Dockerfile
+          bash generate.sh > Dockerfile
       
       - setup_remote_docker
       
