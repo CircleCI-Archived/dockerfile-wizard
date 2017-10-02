@@ -43,6 +43,7 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
     apt-get update && apt-get -y install -t jessie-backports openjdk-8-jdk ca-certificates-java \\
 ; elif [ \$(grep 'VERSION_ID="14.04"' /etc/os-release) ] ; then \\
+		apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
     echo | add-apt-repository ppa:webupd8team/java && \\
     apt-get update && \\
