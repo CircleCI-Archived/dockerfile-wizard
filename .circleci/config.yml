@@ -42,7 +42,7 @@ jobs:
       
       - run: docker build -t $ORG_NAME/$CONTAINER_NAME:$CONTAINER_VERSION .
       
-      - run: docker push
+      - run: docker push $ORG_NAME/$CONTAINER_NAME:$CONTAINER_VERSION
       
   test_image:
     docker:
