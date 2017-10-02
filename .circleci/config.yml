@@ -1,7 +1,8 @@
 version: 2
 jobs:
   build_image:
-    machine: true
+    docker:
+      - image: docker:stable-git
     environment:
       ORG_NAME: iynere
       CONTAINER_NAME: dockerfile-wizard-test
@@ -37,6 +38,8 @@ jobs:
       - checkout
       
       - run: sudo ./generate.sh > Dockerfile
+      
+      - setup_remote_docker
       
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
