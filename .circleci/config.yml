@@ -9,8 +9,6 @@ workflows:
           requires:
             build-image
 
-# ughhhh cmon
-
 version: 2
 jobs:
   build-image:
