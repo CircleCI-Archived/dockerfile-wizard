@@ -37,7 +37,7 @@ jobs:
     steps:
       - checkout
       
-      - run: sudo ./generate.sh > Dockerfile
+      - run: ./generate.sh > Dockerfile
       
       - setup_remote_docker
       
