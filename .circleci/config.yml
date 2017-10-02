@@ -3,38 +3,43 @@ jobs:
   build:
     machine: true
     environment:
-      ORG_NAME: rohara
-      CONTAINER_NAME: foo
+      ORG_NAME: iynere
+      CONTAINER_NAME: dockerfile-wizard-test
       CONTAINER_VERSION: 0.1
-      LINUX_VERSION: DEBIAN_JESSIE
+      LINUX_VERSION: UBUNTU_TRUSTY
         # DEBIAN_JESSIE (8) or
         # DEBIAN_STRETCH (9) or
         # UBUNTU_TRUSTY (14.04) or
         # UBUNTU_XENIAL (16.04)
 
-      JAVA: true
-        # comment out if you don't need Java
-
-      NODE: 8.6.0
+      RUBY_VERSION: 2.3.4
+        # select a version number, i.e., 2.3.4, from https://cache.ruby-lang.org/pub/ruby, or comment out if you don't need Ruby
+        
+      NODE_VERSION: 8.6.0
         # select a version number, i.e., 8.0.0, from https://nodejs.org/dist, or comment out if you don't need Node
-
-      PYTHON: 2.7.13
+        
+      PYTHON_VERSION: 2.7.13
         # select a version number, i.e., 2.7.13, from https://python.org/ftp/python, or comment out if you don't need Python
 
-      RUBY: 2.3.4
-        # select a version number, i.e., 2.3.4, from https://cache.ruby-lang.org/pub/ruby, or comment out if you don't need Ruby
+      # PHP: 5.6.30
+      #   # select a version number, i.e, 7.1.5, from http://se1.php.net/releases
 
-      PHP: 5.6.30
-        # select a version number, i.e, 7.1.5, from http://se1.php.net/releases
+      JAVA: true
+        # comment out if you don't need Java
 
       MYSQL_CLIENT: true
         # comment out if you don't need the MySQL client
 
       POSTGRES_CLIENT: true
         # comment out if you don't need the Postgres client
+        
     steps:
       - checkout
+      
       - run: ./generate.sh > Dockerfile
+      
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      
       - run: docker build -t $ORG_NAME/$CONTAINER_NAME:$CONTAINER_VERSION .
+      
       - run: docker push
