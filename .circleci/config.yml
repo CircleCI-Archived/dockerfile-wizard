@@ -1,6 +1,15 @@
+workflows:
+  version: 2
+  dockerfile-wizard:
+    jobs:
+      - build-image:
+          context: org-global
+          
+      - test-image
+
 version: 2
 jobs:
-  build:
+  build-image:
     machine: true
     environment:
       ORG_NAME: iynere
@@ -43,3 +52,11 @@ jobs:
       - run: docker build -t $ORG_NAME/$CONTAINER_NAME:$CONTAINER_VERSION .
       
       - run: docker push
+      
+  test-image:
+    docker:
+      - image: iynere/dockerfile-wizard-test:0.1
+      
+    steps:
+      
+      - checkout
