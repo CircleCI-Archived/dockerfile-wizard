@@ -2,6 +2,8 @@ tool for customers to easily build Docker images on CircleCI !
 
 working fairly well : https://circleci.com/gh/iynere/dockerfile-wizard/17
 
+(it's expected that this repo will be failing on CircleCI as-is)
+
 ## internal-only instructions for other CSE's / SE's (for now):
 
 - fork the repo
