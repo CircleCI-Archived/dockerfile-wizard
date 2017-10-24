@@ -1,64 +1,58 @@
+image_config: &image_config
+
+  # make sure to set your Docker Hub username and password in CircleCI, either in this project's environment variables or in your organization's org-global Context
+
+  IMAGE_NAME: # name your image
+  
+  IMAGE_VERSION: # pick a version number for your image
+  
+  LINUX_VERSION: # options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL
+  
+  RUBY_VERSION: # select a version number from https://cache.ruby-lang.org/pub/ruby
+  
+  NODE_VERSION: # select a version number from https://nodejs.org/dist
+  
+  PYTHON_VERSION: # select a version number  from https://python.org/ftp/python
+  
+  JAVA: # options: true, false
+  
+  MYSQL_CLIENT: # options: true, false
+    
+  POSTGRES_CLIENT: # options: true, false
+
 version: 2
 jobs:
-  build_image:
+  build:
     machine: true
     environment:
-      ORG_NAME: # enter your Docker Hub username
-      CONTAINER_NAME: # name your container
-      CONTAINER_VERSION: # pick a version number
-      LINUX_VERSION: # i.e., UBUNTU_TRUSTY
-        # DEBIAN_JESSIE (8) or
-        # DEBIAN_STRETCH (9) or
-        # UBUNTU_TRUSTY (14.04) or
-        # UBUNTU_XENIAL (16.04)
-
-      RUBY_VERSION: # i.e., 2.3.4
-        # select a version number, i.e., 2.3.4, from https://cache.ruby-lang.org/pub/ruby, or comment out if you don't need Ruby
-        
-      NODE_VERSION: # i.e., 8.0.0
-        # select a version number, i.e., 8.0.0, from https://nodejs.org/dist, or comment out if you don't need Node
-        
-      PYTHON_VERSION: # i.e., 2.7.13
-        # select a version number, i.e., 2.7.13, from https://python.org/ftp/python, or comment out if you don't need Python
-
-      # PHP: 5.6.30
-      #   # select a version number, i.e, 7.1.5, from http://se1.php.net/releases
-
-      JAVA: true
-        # comment out if you don't need Java
-
-      MYSQL_CLIENT: true
-        # comment out if you don't need the MySQL client
-
-      POSTGRES_CLIENT: true
-        # comment out if you don't need the Postgres client
+      <<: *image_config
         
     steps:
       - checkout
       
-      - run: bash generate.sh > Dockerfile
+##      - run: bash generate.sh > Dockerfile
       
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
-      - run: docker build -t $ORG_NAME/$CONTAINER_NAME:$CONTAINER_VERSION .
+##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
       
-      - run: docker push $ORG_NAME/$CONTAINER_NAME:$CONTAINER_VERSION
+##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
-  test_image:
-    docker:
-      - image: $ORG_NAME/$CONTAINER_NAME:$CONTAINER_VERSION
+##  test_image:
+##    docker:
+##      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
-    steps:
+##    steps:
       
-      - checkout
+##      - checkout
       
-workflows:
-  version: 2
-  dockerfile_wizard:
-    jobs:
-      - build_image:
-          context: org-global
+##workflows:
+##  version: 2
+##  dockerfile_wizard:
+##    jobs:
+##      - build:
+##          context: org-global
           
-      - test_image:
-          requires:
-            - build_image
+##      - test_image:
+##          requires:
+##            - build
