@@ -6,19 +6,19 @@ image_config: &image_config
   
   IMAGE_VERSION: v2
   
-  LINUX_VERSION: UBUNTU_XENIAL
+  LINUX_VERSION: UBUNTU_TRUSTY
   
-  RUBY_VERSION: 2.3.3
+  RUBY_VERSION: 2.3.4
   
   NODE_VERSION: 6.11.3
   
-  PYTHON_VERSION: 2.7.12
+  PYTHON_VERSION: 2.7.13
   
-  JAVA: true
+  JAVA: false
   
-  MYSQL_CLIENT: true
+  MYSQL_CLIENT: false
     
-  POSTGRES_CLIENT: true
+  POSTGRES_CLIENT: false
 
 version: 2
 jobs:
