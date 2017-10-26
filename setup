@@ -6,11 +6,13 @@ read -r -p "
 Name your image: " IMAGE_NAME
 
 perl -i -pe "s/# name your image/$IMAGE_NAME/" .circleci/config.yml
+perl -i -pe "s/\(name of image\)/$IMAGE_NAME/" .circleci/config.yml
 
 read -r -p "
 Give your image a version number: " IMAGE_VERSION
 
 perl -i -pe "s/# give your image a version number/$IMAGE_VERSION/" .circleci/config.yml
+perl -i -pe "s/\(image version\)/$IMAGE_VERSION/" .circleci/config.yml
 
 read -r -p "
 Pick a Linux version for your image:
@@ -36,7 +38,7 @@ case "$LINUX_VERSION" in
 esac
 
 read -r -p "
-Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.1.4, 1.9.3, etc.), or hit enter to skip installing Ruby
+Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.3.3, etc.), or hit enter to skip installing Ruby
 : " RUBY_VERSION
 
 perl -i -pe "s/# pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby/$RUBY_VERSION/" .circleci/config.yml

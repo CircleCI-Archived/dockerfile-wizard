@@ -6,6 +6,8 @@ image_config: &image_config
   
   IMAGE_VERSION: # give your image a version number
   
+  # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 45)
+  
   LINUX_VERSION: # options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL
   
   RUBY_VERSION: # pick a version number from https://cache.ruby-lang.org/pub/ruby
@@ -40,11 +42,19 @@ jobs:
       
 ##  test_image:
 ##    docker:
-##      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+##      - image: $DOCKER_USERNAME/(name of image):(image version)
       
 ##    steps:
       
 ##      - checkout
+
+##      - run: lsb_release -a
+##      - run: node --version
+##      - run: ruby --version
+##      - run: python --version
+##      - run: java -version
+##      - run: mysql --version
+##      - run: psql --version
       
 ##workflows:
 ##  version: 2
@@ -54,5 +64,6 @@ jobs:
 ##          context: org-global
           
 ##      - test_image:
+##          context: org-global
 ##          requires:
 ##            - build
