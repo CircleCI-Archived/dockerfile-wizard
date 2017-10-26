@@ -39,14 +39,15 @@ jobs:
 ##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
 ##  test_image:
-##    docker:
-##      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
-##        environment:
-##          <<: *image_config
+##    machine: true
+##    environment:
+##      <<: *image_config
       
 ##    steps:
       
-##      - checkout
+##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+##      - run: docker pull $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
 ##workflows:
 ##  version: 2

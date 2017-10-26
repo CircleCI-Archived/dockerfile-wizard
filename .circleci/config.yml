@@ -30,33 +30,33 @@ jobs:
     steps:
       - checkout
       
-##      - run: bash generate.sh > Dockerfile
+      - run: bash generate.sh > Dockerfile
       
-##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
-##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
+      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
       
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
-##  test_image:
-##    machine: true
-##    environment:
-##      <<: *image_config
+  test_image:
+    machine: true
+    environment:
+      <<: *image_config
       
-##    steps:
+    steps:
       
-##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-##      - run: docker pull $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+      - run: docker pull $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
-##workflows:
-##  version: 2
-##  dockerfile_wizard:
-##    jobs:
-##      - build:
-##          context: org-global
+workflows:
+  version: 2
+  dockerfile_wizard:
+    jobs:
+      - build:
+          context: org-global
           
-##      - test_image:
-##          context: org-global
-##          requires:
-##            - build
+      - test_image:
+          context: org-global
+          requires:
+            - build
