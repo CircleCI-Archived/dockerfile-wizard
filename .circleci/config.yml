@@ -4,15 +4,15 @@ image_config: &image_config
 
   IMAGE_NAME: test
   
-  IMAGE_VERSION: v1
+  IMAGE_VERSION: v2
   
-  LINUX_VERSION: UBUNTU_TRUSTY
+  LINUX_VERSION: UBUNTU_XENIAL
   
-  RUBY_VERSION: 2.3.4
+  RUBY_VERSION: 1.9.3
   
   NODE_VERSION: 6.11.3
   
-  PYTHON_VERSION: 2.7.13
+  PYTHON_VERSION: 2.7.12
   
   JAVA: true
   
@@ -41,6 +41,8 @@ jobs:
   test_image:
     docker:
       - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+        environment:
+          <<: *image_config
       
     steps:
       
@@ -54,5 +56,6 @@ workflows:
           context: org-global
           
       - test_image:
+          context: org-global
           requires:
             - build
