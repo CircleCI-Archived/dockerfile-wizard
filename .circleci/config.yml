@@ -4,7 +4,7 @@ image_config: &image_config
 
   IMAGE_NAME: test
   
-  IMAGE_VERSION: v2
+  IMAGE_VERSION: v3
   
   LINUX_VERSION: UBUNTU_TRUSTY
   
@@ -14,11 +14,11 @@ image_config: &image_config
   
   PYTHON_VERSION: 2.7.13
   
-  JAVA: false
+  JAVA: true
   
-  MYSQL_CLIENT: false
+  MYSQL_CLIENT: true
     
-  POSTGRES_CLIENT: false
+  POSTGRES_CLIENT: true
 
 version: 2
 jobs:
@@ -30,32 +30,33 @@ jobs:
     steps:
       - checkout
       
-      - run: bash generate.sh > Dockerfile
+##      - run: bash generate.sh > Dockerfile
       
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
-      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
+##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
       
-      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
-  test_image:
-    docker:
-      - image: $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
-        environment:
-          <<: *image_config
+##  test_image:
+##    machine: true
+##    environment:
+##      <<: *image_config
       
-    steps:
+##    steps:
       
-      - checkout
+##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+##      - run: docker pull $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
-workflows:
-  version: 2
-  dockerfile_wizard:
-    jobs:
-      - build:
-          context: org-global
+##workflows:
+##  version: 2
+##  dockerfile_wizard:
+##    jobs:
+##      - build:
+##          context: org-global
           
-      - test_image:
-          context: org-global
-          requires:
-            - build
+##      - test_image:
+##          context: org-global
+##          requires:
+##            - build
