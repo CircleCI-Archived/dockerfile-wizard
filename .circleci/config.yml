@@ -4,7 +4,9 @@ image_config: &image_config
 
   IMAGE_NAME: test
   
-  IMAGE_VERSION: v4
+  IMAGE_VERSION: v5
+  
+  # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 45)
   
   LINUX_VERSION: UBUNTU_TRUSTY
   
@@ -40,11 +42,19 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/test:v4
+      - image: $DOCKER_USERNAME/test:v5
       
     steps:
       
       - checkout
+
+      - run: lsb_release -a
+      - run: node --version
+      - run: ruby --version
+      - run: python --version
+      - run: java -version
+      - run: mysql --version
+      - run: psql --version
       
 workflows:
   version: 2
