@@ -4,7 +4,7 @@ image_config: &image_config
 
   IMAGE_NAME: test
   
-  IMAGE_VERSION: v3
+  IMAGE_VERSION: v4
   
   LINUX_VERSION: UBUNTU_TRUSTY
   
@@ -39,15 +39,12 @@ jobs:
       - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
   test_image:
-    machine: true
-    environment:
-      <<: *image_config
+    docker:
+      - image: $DOCKER_USERNAME/test:v4
       
     steps:
       
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-
-      - run: docker pull $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+      - checkout
       
 workflows:
   version: 2
