@@ -2,13 +2,13 @@ image_config: &image_config
 
   # make sure to set your Docker Hub username and password in CircleCI, either as project-specific environment variables or as resources in your organization's org-global Context
 
-  IMAGE_NAME: test-java-stretch
+  IMAGE_NAME: test-java-xenial
   
   IMAGE_VERSION: v1
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 45)
   
-  LINUX_VERSION: DEBIAN_STRETCH
+  LINUX_VERSION: UBUNTU_XENIAL
   
   RUBY_VERSION: 
   
@@ -42,7 +42,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/test-java-stretch:v1
+      - image: $DOCKER_USERNAME/test-java-xenial:v1
       
     steps:
       
