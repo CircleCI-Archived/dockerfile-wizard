@@ -2,7 +2,7 @@
 
 echo "FROM buildpack-deps:$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 
-if [ "$RUBY_VERSION" ] ; then
+if [ ! -e $RUBY_VERSION ] ; then
     echo "RUN wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION)/ruby-$RUBY_VERSION.tar.gz && \
     tar -xzvf ruby-$RUBY_VERSION.tar.gz && \
     cd ruby-$RUBY_VERSION/ && \
@@ -12,7 +12,7 @@ if [ "$RUBY_VERSION" ] ; then
     ruby -v"
 fi
 
-if [ "$NODE_VERSION" ] ; then
+if [ ! -e $NODE_VERSION ] ; then
     echo "RUN wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.gz && \
     tar -xzvf node-v$NODE_VERSION.tar.gz && \
     rm node-v$NODE_VERSION.tar.gz && \
@@ -24,7 +24,7 @@ if [ "$NODE_VERSION" ] ; then
     rm -r node-v$NODE_VERSION"
 fi
 
-if [ "$PYTHON_VERSION" ] ; then
+if [ ! -e $PYTHON_VERSION ] ; then
     echo "RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz && \
     tar xzf Python-$PYTHON_VERSION.tgz && \
     rm Python-$PYTHON_VERSION.tgz && \
@@ -37,7 +37,7 @@ fi
 #     wget "http://php.net/distributions/php-${PHP_VERSION}.tar.xz"
 # fi
 
-if [ "$JAVA" ] ; then
+if [ ! -e $JAVA ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
@@ -64,10 +64,10 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
 EOF
 fi
 
-if [ "$MYSQL_CLIENT" ] ; then
+if [ ! -e $MYSQL_CLIENT ] ; then
     echo "RUN apt-get -y install mysql-client"
 fi
 
-if [ "$POSTGRES_CLIENT" ] ; then
+if [ ! -e $POSTGRES_CLIENT ] ; then
     echo "RUN apt-get -y install postgresql-client"
 fi
