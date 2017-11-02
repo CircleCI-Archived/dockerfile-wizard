@@ -4,17 +4,17 @@ image_config: &image_config
 
   IMAGE_NAME: test-java-stretch
   
-  IMAGE_VERSION: v2
+  IMAGE_VERSION: v3
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 45)
   
   LINUX_VERSION: DEBIAN_STRETCH
   
-  RUBY_VERSION: # pick a version number from https://cache.ruby-lang.org/pub/ruby
+  ##RUBY_VERSION: # pick a version number from https://cache.ruby-lang.org/pub/ruby
   
-  NODE_VERSION: # pick a version number from https://nodejs.org/dist
+  ##NODE_VERSION: # pick a version number from https://nodejs.org/dist
   
-  PYTHON_VERSION: # pick a version number  from https://python.org/ftp/python
+  ##PYTHON_VERSION: # pick a version number  from https://python.org/ftp/python
   
   JAVA: true
   
@@ -36,17 +36,13 @@ jobs:
       
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
-      - run: echo "$RUBY_VERSION"
-      - run: echo "$NODE_VERSION"
-      - run: echo "$PYTHON_VERSION"
-      
       - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
       
       - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/test-java-stretch:v2
+      - image: $DOCKER_USERNAME/test-java-stretch:v3
       
     steps:
       
