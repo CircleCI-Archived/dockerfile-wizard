@@ -41,32 +41,32 @@ esac
 
 read -r -p "
 Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.3.3, etc.), or hit enter to skip installing Ruby
-: " RUBY_VERSION
+: " RUBY_VERSION_NUM
 
-if [ "$RUBY_VERSION" ] ; then
-	perl -i -pe "s/# pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby/$RUBY_VERSION/" .circleci/config.yml
+if [ "$RUBY_VERSION_NUM" ] ; then
+	perl -i -pe "s/# pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby/$RUBY_VERSION_NUM/" .circleci/config.yml
 else
-	perl -i -pe "s/RUBY_VERSION: # pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby//" .circleci/config.yml
+	perl -i -pe "s/RUBY_VERSION_NUM: # pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby//" .circleci/config.yml
 fi
 
 read -r -p "
 Pick a Node version from https://nodejs.org/dist, or hit enter to skip installing Node
-: " NODE_VERSION
+: " NODE_VERSION_NUM
 
-if [ "$NODE_VERSION" ] ; then
-	perl -i -pe "s/# pick a version number from https:\/\/nodejs.org\/dist/$NODE_VERSION/" .circleci/config.yml
+if [ "$NODE_VERSION_NUM" ] ; then
+	perl -i -pe "s/# pick a version number from https:\/\/nodejs.org\/dist/$NODE_VERSION_NUM/" .circleci/config.yml
 else
-	perl -i -pe "s/NODE_VERSION: # pick a version number from https:\/\/nodejs.org\/dist//" .circleci/config.yml
+	perl -i -pe "s/NODE_VERSION_NUM: # pick a version number from https:\/\/nodejs.org\/dist//" .circleci/config.yml
 fi
 
 read -r -p "
 Pick a Python version from https://python.org/ftp/python, or hit enter to skip installing Python
-: " PYTHON_VERSION
+: " PYTHON_VERSION_NUM
 
-if [ "$PYTHON_VERSION" ] ; then
-	perl -i -pe "s/# pick a version number  from https:\/\/python.org\/ftp\/python/$PYTHON_VERSION/" .circleci/config.yml
+if [ "$PYTHON_VERSION_NUM" ] ; then
+	perl -i -pe "s/# pick a version number  from https:\/\/python.org\/ftp\/python/$PYTHON_VERSION_NUM/" .circleci/config.yml
 else
-	perl -i -pe "s/PYTHON_VERSION: # pick a version number  from https:\/\/python.org\/ftp\/python//" .circleci/config.yml
+	perl -i -pe "s/PYTHON_VERSION_NUM: # pick a version number  from https:\/\/python.org\/ftp\/python//" .circleci/config.yml
 fi
 
 read -r -p "

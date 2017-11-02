@@ -2,39 +2,39 @@
 
 echo "FROM buildpack-deps:$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 
-if [ ! -e $RUBY_VERSION ] ; then
-    echo "RUN wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION)/ruby-$RUBY_VERSION.tar.gz && \
-    tar -xzvf ruby-$RUBY_VERSION.tar.gz && \
-    cd ruby-$RUBY_VERSION/ && \
+if [ ! -e $RUBY_VERSION_NUM ] ; then
+    echo "RUN wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
+    tar -xzvf ruby-$RUBY_VERSION_NUM.tar.gz && \
+    cd ruby-$RUBY_VERSION_NUM/ && \
     ./configure && \
     make -j4 && \
     make install && \
     ruby -v"
 fi
 
-if [ ! -e $NODE_VERSION ] ; then
-    echo "RUN wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.gz && \
-    tar -xzvf node-v$NODE_VERSION.tar.gz && \
-    rm node-v$NODE_VERSION.tar.gz && \
-    cd node-v$NODE_VERSION && \
+if [ ! -e $NODE_VERSION_NUM ] ; then
+    echo "RUN wget https://nodejs.org/dist/v$NODE_VERSION_NUM/node-v$NODE_VERSION_NUM.tar.gz && \
+    tar -xzvf node-v$NODE_VERSION_NUM.tar.gz && \
+    rm node-v$NODE_VERSION_NUM.tar.gz && \
+    cd node-v$NODE_VERSION_NUM && \
     ./configure && \
     make -j4 && \
     make install && \
     cd .. && \
-    rm -r node-v$NODE_VERSION"
+    rm -r node-v$NODE_VERSION_NUM"
 fi
 
-if [ ! -e $PYTHON_VERSION ] ; then
-    echo "RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz && \
-    tar xzf Python-$PYTHON_VERSION.tgz && \
-    rm Python-$PYTHON_VERSION.tgz && \
-    cd Python-$PYTHON_VERSION && \
+if [ ! -e $PYTHON_VERSION_NUM ] ; then
+    echo "RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION_NUM/Python-$PYTHON_VERSION_NUM.tgz && \
+    tar xzf Python-$PYTHON_VERSION_NUM.tgz && \
+    rm Python-$PYTHON_VERSION_NUM.tgz && \
+    cd Python-$PYTHON_VERSION_NUM && \
     ./configure && \
     make install"
 fi
 
-# if [ ! -e $PHP_VERSION ] ; then
-#     wget "http://php.net/distributions/php-${PHP_VERSION}.tar.xz"
+# if [ ! -e $PHP_VERSION_NUM ] ; then
+#     wget "http://php.net/distributions/php-${PHP_VERSION_NUM}.tar.xz"
 # fi
 
 if [ ! -e $JAVA ] ; then

@@ -10,11 +10,11 @@ image_config: &image_config
   
   LINUX_VERSION: # options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL
   
-  RUBY_VERSION: # pick a version number from https://cache.ruby-lang.org/pub/ruby
+  RUBY_VERSION_NUM: # pick a version number from https://cache.ruby-lang.org/pub/ruby
   
-  NODE_VERSION: # pick a version number from https://nodejs.org/dist
+  NODE_VERSION_NUM: # pick a version number from https://nodejs.org/dist
   
-  PYTHON_VERSION: # pick a version number  from https://python.org/ftp/python
+  PYTHON_VERSION_NUM: # pick a version number  from https://python.org/ftp/python
   
   JAVA: # Java options: true, false
   
