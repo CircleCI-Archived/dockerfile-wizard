@@ -46,7 +46,7 @@ Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.3.3, etc.
 if [ "$RUBY_VERSION" ] ; then
 	perl -i -pe "s/# pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby/$RUBY_VERSION/" .circleci/config.yml
 else
-	perl -i -pe "s/RUBY_VERSION:/##RUBY_VERSION:/" .circleci/config.yml
+	perl -i -pe "s/# pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby/false/" .circleci/config.yml
 fi
 
 read -r -p "
@@ -56,7 +56,7 @@ Pick a Node version from https://nodejs.org/dist, or hit enter to skip installin
 if [ "$NODE_VERSION" ] ; then
 	perl -i -pe "s/# pick a version number from https:\/\/nodejs.org\/dist/$NODE_VERSION/" .circleci/config.yml
 else
-	perl -i -pe "s/NODE_VERSION:/##NODE_VERSION:/" .circleci/config.yml
+	perl -i -pe "s/# pick a version number from https:\/\/nodejs.org\/dist/false/" .circleci/config.yml
 fi
 
 read -r -p "
@@ -66,7 +66,7 @@ Pick a Python version from https://python.org/ftp/python, or hit enter to skip i
 if [ "$PYTHON_VERSION" ] ; then
 	perl -i -pe "s/# pick a version number  from https:\/\/python.org\/ftp\/python/$PYTHON_VERSION/" .circleci/config.yml
 else
-	perl -i -pe "s/PYTHON_VERSION:/##PYTHON_VERSION:/" .circleci/config.yml
+	perl -i -pe "s/# pick a version number  from https:\/\/python.org\/ftp\/python/false/" .circleci/config.yml
 fi
 
 read -r -p "
