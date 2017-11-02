@@ -10,11 +10,11 @@ image_config: &image_config
   
   LINUX_VERSION: DEBIAN_STRETCH
   
-  RUBY_VERSION: false
   
-  NODE_VERSION: false
   
-  PYTHON_VERSION: false
+  
+  
+  
   
   JAVA: true
   
