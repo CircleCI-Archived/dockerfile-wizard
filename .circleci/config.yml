@@ -36,6 +36,9 @@ jobs:
       
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
+      - run: echo $RUBY_VERSION
+      - run: echo "$RUBY_VERSION"
+      
       - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
       
       - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
