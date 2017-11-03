@@ -44,7 +44,7 @@ Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.3.3, etc.
 if [ "$RUBY_VERSION_NUM" ] ; then
 	perl -i -pe "s/# pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby/$RUBY_VERSION_NUM/" .circleci/config.yml
 else
-	perl -i -pe "s/RUBY_VERSION_NUM:/RUBY_VERSION_NUM:# /" .circleci/config.yml
+	perl -i -pe "s/RUBY_VERSION_NUM:/# RUBY_VERSION_NUM:/" .circleci/config.yml
 	perl -i -pe "s/- run: ruby/# - run: ruby/" .circleci/config.yml
 fi
 

@@ -10,7 +10,7 @@ image_config: &image_config
   
   LINUX_VERSION: DEBIAN_JESSIE
   
-  RUBY_VERSION_NUM:#  # pick a version number from https://cache.ruby-lang.org/pub/ruby
+  # RUBY_VERSION_NUM: # pick a version number from https://cache.ruby-lang.org/pub/ruby
   
   # NODE_VERSION_NUM: # pick a version number from https://nodejs.org/dist
   
