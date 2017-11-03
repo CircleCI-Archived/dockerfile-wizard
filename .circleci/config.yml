@@ -25,12 +25,15 @@ image_config: &image_config
 version: 2
 jobs:
   build:
-    machine: true
+    docker:
+      - image: circleci/node
     environment:
       <<: *image_config
         
     steps:
       - checkout
+      
+      - setup_remote_docker
       
       - run: bash generate.sh > Dockerfile
       
