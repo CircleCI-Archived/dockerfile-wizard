@@ -60,6 +60,7 @@ jobs:
 ##      - run: java -version
 ##      - run: mysql --version
 ##      - run: psql --version
+##      - run: phantomjs --version
       
 ##workflows:
 ##  version: 2
