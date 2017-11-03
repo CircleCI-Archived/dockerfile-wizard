@@ -32,41 +32,41 @@ jobs:
     steps:
       - checkout
       
-##      - run: bash generate.sh > Dockerfile
+      - run: bash generate.sh > Dockerfile
 
-##      - store_artifacts:
-##          path: Dockerfile
+      - store_artifacts:
+          path: Dockerfile
       
-##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
-##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
+      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
       
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
       
-##  test_image:
-##    docker:
-##      - image: $DOCKER_USERNAME/(name of image):(image version)
+  test_image:
+    docker:
+      - image: $DOCKER_USERNAME/(name of image):(image version)
       
-##    steps:
+    steps:
       
-##      - checkout
+      - checkout
 
-##      - run: lsb_release -a
-##      - run: node --version
-##      - run: ruby --version
-##      - run: python --version
-##      - run: java -version
-##      - run: mysql --version
-##      - run: psql --version
+      - run: lsb_release -a
+      - run: node --version
+      - run: ruby --version
+      - run: python --version
+      - run: java -version
+      - run: mysql --version
+      - run: psql --version
       
-##workflows:
-##  version: 2
-##  dockerfile_wizard:
-##    jobs:
-##      - build:
-##          context: org-global
+workflows:
+  version: 2
+  dockerfile_wizard:
+    jobs:
+      - build:
+          context: org-global
           
-##      - test_image:
-##          context: org-global
-##          requires:
-##            - build
+      - test_image:
+          context: org-global
+          requires:
+            - build

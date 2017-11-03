@@ -2,13 +2,13 @@ image_config: &image_config
 
   # make sure to set your Docker Hub username and password in CircleCI, either as project-specific environment variables or as resources in your organization's org-global Context
 
-  IMAGE_NAME: jessie (no spaces please!)
+  IMAGE_NAME: stretch (no spaces please!)
   
   IMAGE_VERSION: v1
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
   
-  LINUX_VERSION: DEBIAN_JESSIE
+  LINUX_VERSION: DEBIAN_STRETCH
   
   
   
@@ -45,7 +45,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/jessie:v1
+      - image: $DOCKER_USERNAME/stretch:v1
       
     steps:
       
