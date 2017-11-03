@@ -37,7 +37,7 @@ fi
 #     wget "http://php.net/distributions/php-${PHP_VERSION_NUM}.tar.xz"
 # fi
 
-if [ ! -e $JAVA ] ; then
+if [ $JAVA = "true" ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
@@ -64,15 +64,15 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
 EOF
 fi
 
-if [ ! -e $MYSQL_CLIENT ] ; then
+if [ $MYSQL_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install mysql-client"
 fi
 
-if [ ! -e $POSTGRES_CLIENT ] ; then
+if [ $POSTGRES_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install postgresql-client"
 fi
 
-if [ ! -e $BROWSERS ] ; then
+if [ $BROWSERS = "true" ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
