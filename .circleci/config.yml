@@ -2,7 +2,7 @@ image_config: &image_config
 
   # make sure to set your Docker Hub username and password in CircleCI, either as project-specific environment variables or as resources in your organization's org-global Context
 
-  IMAGE_NAME: stretchhh
+  IMAGE_NAME: stretchch
   
   IMAGE_VERSION: v1
   
@@ -45,7 +45,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/stretchhh:v1
+      - image: $DOCKER_USERNAME/stretchch:v1
       
     steps:
       
