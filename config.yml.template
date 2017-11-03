@@ -21,6 +21,8 @@ image_config: &image_config
   MYSQL_CLIENT: # MySQL options: true, false
     
   POSTGRES_CLIENT: # Postgres options: true, false
+  
+  BROWSERS: # install browsers/tools (PhantomJS, Firefox, Chrome, Chromedriver) for browser testing: true, false
 
 version: 2
 jobs:

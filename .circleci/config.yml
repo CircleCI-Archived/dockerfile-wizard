@@ -2,13 +2,13 @@ image_config: &image_config
 
   # make sure to set your Docker Hub username and password in CircleCI, either as project-specific environment variables or as resources in your organization's org-global Context
 
-  IMAGE_NAME: stretchch
+  IMAGE_NAME: test-browsers
   
   IMAGE_VERSION: v1
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
   
-  LINUX_VERSION: DEBIAN_STRETCH
+  LINUX_VERSION: DEBIAN_JESSIE
   
   # RUBY_VERSION_NUM: # pick a version number from https://cache.ruby-lang.org/pub/ruby
   
@@ -16,11 +16,13 @@ image_config: &image_config
   
   # PYTHON_VERSION_NUM: # pick a version number  from https://python.org/ftp/python
   
-  JAVA: true
+  JAVA: false
   
   MYSQL_CLIENT: false
     
   POSTGRES_CLIENT: false
+  
+  BROWSERS: true
 
 version: 2
 jobs:
@@ -45,7 +47,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/stretchch:v1
+      - image: $DOCKER_USERNAME/test-browsers:v1
       
     steps:
       
@@ -55,7 +57,7 @@ jobs:
       # - run: node --version
       # - run: ruby --version
       # - run: python --version
-      - run: java -version
+      # - run: java -version
       # - run: mysql --version
       # - run: psql --version
       
