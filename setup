@@ -44,7 +44,8 @@ Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.3.3, etc.
 if [ "$RUBY_VERSION_NUM" ] ; then
 	perl -i -pe "s/# pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby/$RUBY_VERSION_NUM/" .circleci/config.yml
 else
-	perl -i -pe "s/RUBY_VERSION_NUM: # pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby//" .circleci/config.yml
+	perl -i -pe "s/RUBY_VERSION_NUM:/RUBY_VERSION_NUM:# /" .circleci/config.yml
+	perl -i -pe "s/- run: ruby/# - run: ruby/" .circleci/config.yml
 fi
 
 read -r -p "
@@ -54,7 +55,8 @@ Pick a Node version from https://nodejs.org/dist, or hit enter to skip installin
 if [ "$NODE_VERSION_NUM" ] ; then
 	perl -i -pe "s/# pick a version number from https:\/\/nodejs.org\/dist/$NODE_VERSION_NUM/" .circleci/config.yml
 else
-	perl -i -pe "s/NODE_VERSION_NUM: # pick a version number from https:\/\/nodejs.org\/dist//" .circleci/config.yml
+	perl -i -pe "s/NODE_VERSION_NUM:/# NODE_VERSION_NUM:/" .circleci/config.yml
+	perl -i -pe "s/- run: node/# - run: node/" .circleci/config.yml
 fi
 
 read -r -p "
@@ -64,7 +66,8 @@ Pick a Python version from https://python.org/ftp/python, or hit enter to skip i
 if [ "$PYTHON_VERSION_NUM" ] ; then
 	perl -i -pe "s/# pick a version number  from https:\/\/python.org\/ftp\/python/$PYTHON_VERSION_NUM/" .circleci/config.yml
 else
-	perl -i -pe "s/PYTHON_VERSION_NUM: # pick a version number  from https:\/\/python.org\/ftp\/python//" .circleci/config.yml
+	perl -i -pe "s/PYTHON_VERSION_NUM:/# PYTHON_VERSION_NUM:/" .circleci/config.yml
+	perl -i -pe "s/- run: python/# - run: python/" .circleci/config.yml
 fi
 
 read -r -p "
@@ -77,6 +80,7 @@ case "$JAVA" in
 		;;
 	*)
 		perl -i -pe 's/# Java options: true, false/false/' .circleci/config.yml
+		perl -i -pe "s/- run: java/# - run: java/" .circleci/config.yml
 		;;
 esac
 
@@ -90,6 +94,7 @@ case "$MYSQL" in
 		;;
 	*)
 		perl -i -pe 's/# MySQL options: true, false/false/' .circleci/config.yml
+		perl -i -pe "s/- run: mysql/# - run: mysql/" .circleci/config.yml
 		;;
 esac
 
@@ -103,6 +108,7 @@ case "$POSTGRES" in
 		;;
 	*)
 		perl -i -pe 's/# Postgres options: true, false/false/' .circleci/config.yml
+		perl -i -pe "s/- run: psql/# - run: psql/" .circleci/config.yml
 		;;
 esac
 
