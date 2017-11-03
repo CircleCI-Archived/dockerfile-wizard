@@ -10,11 +10,11 @@ image_config: &image_config
   
   LINUX_VERSION: DEBIAN_JESSIE
   
-  RUBY_VERSION_NUM: 
   
-  NODE_VERSION_NUM: 
   
-  PYTHON_VERSION_NUM: 
+  
+  
+  
   
   JAVA: true
   
