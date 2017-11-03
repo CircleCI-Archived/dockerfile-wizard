@@ -41,7 +41,7 @@ if [ ! -e $JAVA ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
-    apt-get update && apt-get -y install -t jessie-backports openjdk-8-jdk ca-certificates-java \\
+    apt-get update && apt-get -y install -t jessie-backports openjdk-8-jdk \\
 ; elif [ \$(grep 'VERSION_ID="9"' /etc/os-release) ] ; then \\
 		echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list && \\
 		apt-get update && apt-get -y install -t stretch-backports openjdk-8-jdk ca-certificates-java \\
