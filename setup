@@ -5,7 +5,7 @@ echo "CircleCI Docker Wizard"
 read -r -p "
 Name your image (no spaces please!): " IMAGE_NAME
 
-perl -i -pe "s/# name your image/$IMAGE_NAME/" .circleci/config.yml
+perl -i -pe "s/# name your image (no spaces please!)/$IMAGE_NAME/" .circleci/config.yml
 perl -i -pe "s/\(name of image\)/$IMAGE_NAME/" .circleci/config.yml
 
 read -r -p "
