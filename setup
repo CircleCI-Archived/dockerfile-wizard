@@ -3,7 +3,7 @@
 echo "CircleCI Docker Wizard"
 
 read -r -p "
-Name your image: " IMAGE_NAME
+Name your image (no spaces please!): " IMAGE_NAME
 
 perl -i -pe "s/# name your image/$IMAGE_NAME/" .circleci/config.yml
 perl -i -pe "s/\(name of image\)/$IMAGE_NAME/" .circleci/config.yml
@@ -36,8 +36,6 @@ case "$LINUX_VERSION" in
 		perl -i -pe 's/# options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL/UBUNTU_XENIAL/' .circleci/config.yml
 		;;
 esac
-
-# need to comment out env var declaration completely if skipping, or else explicitly set equal to a blank string or sth
 
 read -r -p "
 Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.3.3, etc.), or hit enter to skip installing Ruby
