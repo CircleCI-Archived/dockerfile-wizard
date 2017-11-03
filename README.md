@@ -25,3 +25,4 @@ To use the Docker Wizard again, run `make reset`in the cloned directory, then re
 
 - Add PHP support
 - Add support for other container registries
+- Add browser options
