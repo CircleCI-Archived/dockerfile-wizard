@@ -43,7 +43,8 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
     apt-get update && apt-get -y install -t jessie-backports openjdk-8-jdk ca-certificates-java \\
 ; elif [ \$(grep 'VERSION_ID="9"' /etc/os-release) ] ; then \\
-		apt-get update && apt-get -y install -t default-jdk ca-certificates-java \\
+		echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list && \\
+		apt-get update && apt-get -t stretch-backports install -y openjdk-8-jdk ca-certificates-java
 ; elif [ \$(grep 'VERSION_ID="14.04"' /etc/os-release) ] ; then \\
 		apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
