@@ -71,3 +71,5 @@ fi
 if [ $POSTGRES_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install postgresql-client"
 fi
+
+echo "RUN apt-get -y install lsb-release"
