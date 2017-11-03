@@ -2,7 +2,7 @@ image_config: &image_config
 
   # make sure to set your Docker Hub username and password in CircleCI, either as project-specific environment variables or as resources in your organization's org-global Context
 
-  IMAGE_NAME: test-browsers
+  IMAGE_NAME: browse
   
   IMAGE_VERSION: v1
   
@@ -47,7 +47,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/test-browsers:v1
+      - image: $DOCKER_USERNAME/browse:v1
       
     steps:
       
