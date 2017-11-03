@@ -89,13 +89,5 @@ EOF
 echo "RUN apt-get -y install lsb-release"
 echo "# start xvfb automatically to avoid needing to express in circle.yml
 ENV DISPLAY :99
-RUN printf '#!/bin/sh\nXvfb :99 -screen 0 1280x1024x24 &\nexec \"$@\"\n' > /tmp/entrypoint \
-	&& chmod +x /tmp/entrypoint \
-  && mv /tmp/entrypoint /docker-entrypoint.sh
-
-# ensure that the build agent doesn't override the entrypoint
-LABEL com.circleci.preserve-entrypoint=true
-
-ENTRYPOINT [\"/docker-entrypoint.sh\"]
-CMD [\"/bin/sh\"]"
+CMD Xvfb :99 -screen 0 1280x1024x24"
 fi
