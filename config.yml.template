@@ -40,7 +40,7 @@ jobs:
       
 ##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
       
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION && sleep 10
 
 ##      - store_artifacts:
 ##          path: Dockerfile
