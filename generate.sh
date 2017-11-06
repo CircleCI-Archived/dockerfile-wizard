@@ -72,6 +72,8 @@ if [ $POSTGRES_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install postgresql-client"
 fi
 
+echo "RUN apt-get -y install lsb-release"
+
 if [ $BROWSERS = "true" ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
@@ -87,7 +89,13 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
 EOF
 echo "# start xvfb automatically to avoid needing to express in circle.yml
 ENV DISPLAY :99
-CMD Xvfb :99 -screen 0 1280x1024x24"
-fi
+RUN printf '#!/bin/sh\nXvfb :99 -screen 0 1280x1024x24 &\nexec \"$@\"\n' > /tmp/entrypoint \
+	&& chmod +x /tmp/entrypoint \
+        && mv /tmp/entrypoint /docker-entrypoint.sh
 
-echo "RUN apt-get -y install lsb-release"
+# ensure that the build agent doesn't override the entrypoint
+LABEL com.circleci.preserve-entrypoint=true
+
+ENTRYPOINT [\"/docker-entrypoint.sh\"]
+CMD [\"/bin/sh\"]"
+fi

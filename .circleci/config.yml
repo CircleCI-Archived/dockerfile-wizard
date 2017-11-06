@@ -4,7 +4,7 @@ image_config: &image_config
 
   IMAGE_NAME: jessie-phantom
   
-  IMAGE_VERSION: 2
+  IMAGE_VERSION: 3
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
   
@@ -47,7 +47,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/jessie-phantom:2
+      - image: $DOCKER_USERNAME/jessie-phantom:3
       
     steps:
       
