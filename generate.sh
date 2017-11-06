@@ -72,7 +72,7 @@ if [ $POSTGRES_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install postgresql-client"
 fi
 
-echo "RUN apt-get -y install lsb-release"
+echo "RUN apt-get update && apt-get -y install lsb-release"
 
 if [ $BROWSERS = "true" ] ; then
 cat << EOF
