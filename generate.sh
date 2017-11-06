@@ -93,15 +93,13 @@ echo "RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/f
   && echo 'ef016febe5ec4eaf7d455a34579834bcde7703cb0818c80044f4d148df8473bb  /tmp/firefox.deb' | sha256sum -c \
   && dpkg -i /tmp/firefox.deb || apt-get -f install  \
   && apt-get install -y libgtk3.0-cil-dev libasound2 libasound2 libdbus-glib-1-2 libdbus-1-3 \
-  && rm -rf /tmp/firefox.deb \
-  && firefox --version"
+  && rm -rf /tmp/firefox.deb"
   
 echo "RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
   && (dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get -fy install)  \
   && rm -rf /tmp/google-chrome-stable_current_amd64.deb \
   && sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox --no-sandbox|g' \
-       \"/opt/google/chrome/google-chrome\" \
-  && google-chrome --version"
+       \"/opt/google/chrome/google-chrome\""
 
 echo "RUN export CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE) \
   && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip \"http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip\" \
@@ -109,7 +107,6 @@ echo "RUN export CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://
   && unzip chromedriver_linux64.zip \
   && rm -rf chromedriver_linux64.zip \
   && mv chromedriver /usr/local/bin/chromedriver \
-  && chmod +x /usr/local/bin/chromedriver \
-  && chromedriver --version"
+  && chmod +x /usr/local/bin/chromedriver"
 
 fi
