@@ -87,4 +87,5 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     apt-get update && apt-get -y install xvfb phantomjs \\
 ; fi
 EOF
+echo "ENV DISPLAY :99"
 fi
