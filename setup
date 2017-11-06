@@ -122,6 +122,10 @@ case "$BROWSERS" in
 		;;
 	*)
 		perl -i -pe 's/# install browsers\/tools \(PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/false/' .circleci/config.yml
+		perl -i -pe "s/- run: # phantomjs/# - run: # phantomjs/" .circleci/config.yml
+		perl -i -pe "s/name: verify phantomjs/# name: verify phantomjs/" .circleci/config.yml
+		perl -i -pe "s/command: Xvfb :99 -screen 0 1280x1024x24/# command: Xvfb :99 -screen 0 1280x1024x24/" .circleci/config.yml
+		perl -i -pe "s/background: true/# background: true/" .circleci/config.yml
 		perl -i -pe "s/- run: phantomjs/# - run: phantomjs/" .circleci/config.yml
 		;;
 esac

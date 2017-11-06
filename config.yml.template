@@ -60,6 +60,10 @@ jobs:
 ##      - run: java -version
 ##      - run: mysql --version
 ##      - run: psql --version
+##      - run: # phantomjs
+##          name: verify phantomjs
+##          command: Xvfb :99 -screen 0 1280x1024x24
+##          background: true
 ##      - run: phantomjs --version
       
 ##workflows:

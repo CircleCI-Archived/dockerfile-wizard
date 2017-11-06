@@ -4,7 +4,7 @@ image_config: &image_config
 
   IMAGE_NAME: jessie-phantom
   
-  IMAGE_VERSION: 3
+  IMAGE_VERSION: 4
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
   
@@ -47,7 +47,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/jessie-phantom:3
+      - image: $DOCKER_USERNAME/jessie-phantom:4
       
     steps:
       
@@ -60,6 +60,10 @@ jobs:
       # - run: java -version
       # - run: mysql --version
       # - run: psql --version
+      - run: # phantomjs
+          name: verify phantomjs
+          command: Xvfb :99 -screen 0 1280x1024x24
+          background: true
       - run: phantomjs --version
       
 workflows:
