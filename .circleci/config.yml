@@ -2,13 +2,13 @@ image_config: &image_config
 
   # make sure to set your Docker Hub username and password in CircleCI, either as project-specific environment variables or as resources in your organization's org-global Context
 
-  IMAGE_NAME: trusty-firefox
+  IMAGE_NAME: xenial-firefox
   
   IMAGE_VERSION: 1
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
   
-  LINUX_VERSION: UBUNTU_TRUSTY
+  LINUX_VERSION: UBUNTU_XENIAL
   
   # RUBY_VERSION_NUM: # pick a version number from https://cache.ruby-lang.org/pub/ruby
   
@@ -47,7 +47,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/trusty-firefox:1
+      - image: $DOCKER_USERNAME/xenial-firefox:1
       
     steps:
       
