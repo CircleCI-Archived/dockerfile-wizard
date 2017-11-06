@@ -65,6 +65,7 @@ jobs:
 ##          command: Xvfb :99 -screen 0 1280x1024x24
 ##          background: true
 ##      - run: phantomjs --version
+##      - run: firefox --version
       
 ##workflows:
 ##  version: 2
