@@ -76,27 +76,18 @@ if [ $BROWSERS = "true" ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
-    apt-get update && apt-get -y install -t jessie-backports xvfb phantomjs && \\
-    # start xvfb automatically to avoid needing to express in circle.yml
-    ENV DISPLAY :99
-    CMD Xvfb :99 -screen 0 1280x1024x24
+    apt-get update && apt-get -y install -t jessie-backports xvfb phantomjs \\
 ; elif [ \$(grep 'VERSION_ID="9"' /etc/os-release) ] ; then \\
-		apt-get update && apt-get -y install xvfb phantomjs && \\
-		# start xvfb automatically to avoid needing to express in circle.yml
-		ENV DISPLAY :99
-		CMD Xvfb :99 -screen 0 1280x1024x24
+		apt-get update && apt-get -y install xvfb phantomjs \\
 ; elif [ \$(grep 'VERSION_ID="14.04"' /etc/os-release) ] ; then \\
-		apt-get update && apt-get -y install xvfb phantomjs && \\
-		# start xvfb automatically to avoid needing to express in circle.yml
-		ENV DISPLAY :99
-		CMD Xvfb :99 -screen 0 1280x1024x24
+		apt-get update && apt-get -y install xvfb phantomjs \\
 ; elif [ \$(grep 'VERSION_ID="16.04"' /etc/os-release) ] ; then \\
-    apt-get update && apt-get -y install xvfb phantomjs && \\
-    # start xvfb automatically to avoid needing to express in circle.yml
-    ENV DISPLAY :99
-    CMD Xvfb :99 -screen 0 1280x1024x24
+    apt-get update && apt-get -y install xvfb phantomjs \\
 ; fi
 EOF
+echo "# start xvfb automatically to avoid needing to express in circle.yml
+ENV DISPLAY :99
+CMD Xvfb :99 -screen 0 1280x1024x24"
 fi
 
 echo "RUN apt-get -y install lsb-release"
