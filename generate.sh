@@ -85,9 +85,6 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     apt-get update && apt-get -y install phantomjs \\
 ; fi
 EOF
+fi
 
 echo "RUN apt-get -y install lsb-release"
-echo "# start xvfb automatically to avoid needing to express in circle.yml
-ENV DISPLAY :99
-CMD Xvfb :99 -screen 0 1280x1024x24"
-fi
