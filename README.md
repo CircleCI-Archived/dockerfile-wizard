@@ -23,6 +23,12 @@ To use the Docker Wizard again, run `make reset`in the cloned directory, then re
 
 ## To-do
 
+- get chromedriver working
+- test everything again
+- make sure documentation is tight / accurate
+- move to `circleci-public` GH org to publicize
+- blog post
+
+### later
 - Add PHP support
 - Add support for other container registries
-- Add browser options
