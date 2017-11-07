@@ -4,9 +4,9 @@ image_config: &image_config
 
   IMAGE_NAME: # name your image (no spaces please!)
   
-  IMAGE_VERSION: # give your image a version number
+  IMAGE_TAG: # give your image a version number
   
-  # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
+  # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_TAG to the `test_image` job (line 48)
   
   LINUX_VERSION: # options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL
   
@@ -38,9 +38,9 @@ jobs:
       
 ##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
-##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
+##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
       
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION && sleep 10
+##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
 
 ##      - store_artifacts:
 ##          path: Dockerfile

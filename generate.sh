@@ -79,33 +79,31 @@ cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
     apt-get update && apt-get -y install -t jessie-backports xvfb phantomjs \\
-; elif [ \$(grep 'VERSION_ID="9"' /etc/os-release) ] ; then \\
+; else \\
 		apt-get update && apt-get -y install xvfb phantomjs \\
-; elif [ \$(grep 'VERSION_ID="14.04"' /etc/os-release) ] ; then \\
-		apt-get update && apt-get -y install xvfb phantomjs \\
-; elif [ \$(grep 'VERSION_ID="16.04"' /etc/os-release) ] ; then \\
-    apt-get update && apt-get -y install xvfb phantomjs \\
 ; fi
 EOF
 echo "ENV DISPLAY :99"
 
-echo "RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/firefox.deb https://s3.amazonaws.com/circle-downloads/firefox-mozilla-build_47.0.1-0ubuntu1_amd64.deb \
+echo "# install firefox
+RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/firefox.deb https://s3.amazonaws.com/circle-downloads/firefox-mozilla-build_47.0.1-0ubuntu1_amd64.deb \
   && echo 'ef016febe5ec4eaf7d455a34579834bcde7703cb0818c80044f4d148df8473bb  /tmp/firefox.deb' | sha256sum -c \
   && dpkg -i /tmp/firefox.deb || apt-get -f install  \
   && apt-get install -y libgtk3.0-cil-dev libasound2 libasound2 libdbus-glib-1-2 libdbus-1-3 \
   && rm -rf /tmp/firefox.deb"
   
-echo "RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+echo "# install chrome
+RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
   && (dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get -fy install)  \
   && rm -rf /tmp/google-chrome-stable_current_amd64.deb \
   && sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox --no-sandbox|g' \
        \"/opt/google/chrome/google-chrome\""
 
-echo "RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip \"http://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip\" \
+echo "# install chromedriver
+RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip \"http://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip\" \
   && cd /tmp \
   && unzip chromedriver_linux64.zip \
   && rm -rf chromedriver_linux64.zip \
   && mv chromedriver /usr/local/bin/chromedriver \
   && chmod +x /usr/local/bin/chromedriver"
-
 fi
