@@ -4,11 +4,11 @@ image_config: &image_config
 
   IMAGE_NAME: chromedriver
   
-  IMAGE_VERSION: trusty
+  IMAGE_VERSION: xenial
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
   
-  LINUX_VERSION: UBUNTU_TRUSTY
+  LINUX_VERSION: UBUNTU_XENIAL
   
   # RUBY_VERSION_NUM: # pick a version number from https://cache.ruby-lang.org/pub/ruby
   
@@ -47,7 +47,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/chromedriver:trusty
+      - image: $DOCKER_USERNAME/chromedriver:xenial
       
     steps:
       
