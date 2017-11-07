@@ -4,11 +4,11 @@ image_config: &image_config
 
   IMAGE_NAME: full-test
   
-  IMAGE_VERSION: stretch
+  IMAGE_VERSION: trusty
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
   
-  LINUX_VERSION: DEBIAN_STRETCH
+  LINUX_VERSION: UBUNTU_TRUSTY
   
   RUBY_VERSION_NUM: 2.3.3
   
@@ -47,7 +47,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/full-test:stretch
+      - image: $DOCKER_USERNAME/full-test:trusty
       
     steps:
       
