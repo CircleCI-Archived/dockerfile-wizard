@@ -4,11 +4,11 @@ image_config: &image_config
 
   IMAGE_NAME: final
   
-  IMAGE_TAG: trusty
+  IMAGE_TAG: xenial
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_TAG to the `test_image` job (line 48)
   
-  LINUX_VERSION: UBUNTU_TRUSTY
+  LINUX_VERSION: UBUNTU_XENIAL
   
   RUBY_VERSION_NUM: 2.4.2
   
@@ -47,7 +47,7 @@ jobs:
       
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/final:trusty
+      - image: $DOCKER_USERNAME/final:xenial
       
     steps:
       
