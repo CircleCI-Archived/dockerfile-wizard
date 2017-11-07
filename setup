@@ -38,7 +38,7 @@ case "$LINUX_VERSION" in
 esac
 
 read -r -p "
-Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.3.3, etc.), or hit enter to skip installing Ruby
+Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.4.2, etc.), or hit enter to skip installing Ruby
 : " RUBY_VERSION_NUM
 
 if [ "$RUBY_VERSION_NUM" ] ; then
