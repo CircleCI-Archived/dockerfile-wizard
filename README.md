@@ -17,7 +17,7 @@ This tool can help you easily build Docker images with different versions/combin
 1. Run `./setup` in the cloned directory, or else manually add the versions/dependencies that you need to `.circleci/config.yml` as specified in the `image_config` section
 1. Commit and push your changes
 
-Once the build has finished, your image will be available at `http://hub.docker.com/r/DOCKER_USERNAME/IMAGE_NAME` and can be used in other projects building on CircleCI.
+Once the build has finished, your image will be available at `http://hub.docker.com/r/DOCKER_USERNAME/IMAGE_NAME` and can be used in other projects building on CircleCI. (The Dockerfile for your image is stored as an artifact in this project's `build` job.)
 
 To use the Docker Wizard again, run `make reset` in the cloned directory, then repeat steps 4-6.
 

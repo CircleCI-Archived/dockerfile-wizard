@@ -14,7 +14,7 @@ image_config: &image_config
   
   NODE_VERSION_NUM: # pick a version number from https://nodejs.org/dist
   
-  PYTHON_VERSION_NUM: # pick a version number  from https://python.org/ftp/python
+  PYTHON_VERSION_NUM: # pick a version number from https://python.org/ftp/python
   
   JAVA: # Java options: true, false
   
@@ -24,7 +24,7 @@ image_config: &image_config
   
   BROWSERS: # install browsers/tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver) for browser testing: true, false
   
-  # NOTE: if you are modifying this config.yml file manually, make sure to comment out the accompanying `run` steps (lines 58-74) in the `test_image` job for any languages/dependencies that you are not installing in your Docker image
+  # NOTE: if you are modifying this config.yml file manually, make sure to also comment out the accompanying `run` steps (lines 58-74) in the `test_image` job for any languages/dependencies that you are not installing in your Docker image
 
 version: 2
 jobs:
