@@ -118,7 +118,7 @@ Does your project need web browsers for browser testing? Enter the word 'yes' to
 
 case "$BROWSERS" in
   yes)
-    perl -i -pe 's/# install browsers/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/true/' .circleci/config.yml
+    perl -i -pe 's/# install browsers\/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/true/' .circleci/config.yml
     ;;
   *)
     perl -i -pe 's/# install browsers/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/false/' .circleci/config.yml
