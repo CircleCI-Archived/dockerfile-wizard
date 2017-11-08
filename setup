@@ -121,7 +121,7 @@ case "$BROWSERS" in
     perl -i -pe 's/# install browsers\/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/true/' .circleci/config.yml
     ;;
   *)
-    perl -i -pe 's/# install browsers/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/false/' .circleci/config.yml
+    perl -i -pe 's/# install browsers\/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/false/' .circleci/config.yml
     perl -i -pe "s/- run: # phantomjs/# - run: # phantomjs/" .circleci/config.yml
     perl -i -pe "s/name: verify phantomjs/# name: verify phantomjs/" .circleci/config.yml
     perl -i -pe "s/command: Xvfb/# command: Xvfb/" .circleci/config.yml
