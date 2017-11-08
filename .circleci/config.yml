@@ -4,7 +4,7 @@ image_config: &image_config
 
   IMAGE_NAME: # name your image (no spaces please!)
   
-  IMAGE_TAG: # give your image a tag
+  IMAGE_TAG: # give your image a tag (no spaces please!)
   
   # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add the values of your IMAGE_NAME and IMAGE_TAG variables to the `test_image` job (line 52)
   
