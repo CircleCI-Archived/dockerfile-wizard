@@ -1,7 +1,5 @@
 ready:
-	@cp .circleci/config.yml config.yml.template
-	@perl -i -pe 's/##//g' .circleci/config.yml
+	@grep -q '##' .circleci/config.yml && cp .circleci/config.yml config.yml.template && perl -i -pe 's/##//g' .circleci/config.yml
 	
 reset:
-	@cat config.yml.template > .circleci/config.yml
-	@rm config.yml.template
+	@[ -f config.yml.template ] && cat config.yml.template > .circleci/config.yml && rm config.yml.template

@@ -4,9 +4,9 @@ image_config: &image_config
 
   IMAGE_NAME: # name your image (no spaces please!)
   
-  IMAGE_VERSION: # give your image a version number
+  IMAGE_TAG: # give your image a tag
   
-  # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add your IMAGE_NAME and IMAGE_VERSION to the `test_image` job (line 48)
+  # NOTE: if you're modifying this config.yml file manually rather than using the included setup script, make sure you also add the values of your IMAGE_NAME and IMAGE_TAG variables to the `test_image` job (line 52)
   
   LINUX_VERSION: # options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL
   
@@ -21,6 +21,10 @@ image_config: &image_config
   MYSQL_CLIENT: # MySQL options: true, false
     
   POSTGRES_CLIENT: # Postgres options: true, false
+  
+  BROWSERS: # install browsers/tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver) for browser testing: true, false
+  
+  # NOTE: if you are modifying this config.yml file manually, make sure to comment out the accompanying `run` steps (lines 58-74) in the `test_image` job for any languages/dependencies that you are not installing in your Docker image
 
 version: 2
 jobs:
@@ -36,16 +40,16 @@ jobs:
       
 ##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       
-##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION .
+##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
       
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_VERSION
+##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
 
 ##      - store_artifacts:
 ##          path: Dockerfile
       
 ##  test_image:
 ##    docker:
-##      - image: $DOCKER_USERNAME/(name of image):(image version)
+##      - image: $DOCKER_USERNAME/(name of image):(image tag)
       
 ##    steps:
       
@@ -58,6 +62,16 @@ jobs:
 ##      - run: java -version
 ##      - run: mysql --version
 ##      - run: psql --version
+
+##      - run: # phantomjs
+##          name: verify phantomjs
+##          command: Xvfb :99 -screen 0 1280x1024x24 && sleep 10
+##          background: true
+
+##      - run: phantomjs --version
+##      - run: firefox --version
+##      - run: google-chrome --version
+##      - run: chromedriver --version
       
 ##workflows:
 ##  version: 2

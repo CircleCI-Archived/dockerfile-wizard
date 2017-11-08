@@ -9,10 +9,10 @@ perl -i -pe "s/# name your image \(no spaces please!\)/$IMAGE_NAME/" .circleci/c
 perl -i -pe "s/\(name of image\)/$IMAGE_NAME/" .circleci/config.yml
 
 read -r -p "
-Give your image a version number: " IMAGE_VERSION
+Give your image a tag: " IMAGE_TAG
 
-perl -i -pe "s/# give your image a version number/$IMAGE_VERSION/" .circleci/config.yml
-perl -i -pe "s/\(image version\)/$IMAGE_VERSION/" .circleci/config.yml
+perl -i -pe "s/# give your image a version number/$IMAGE_TAG/" .circleci/config.yml
+perl -i -pe "s/\(image version\)/$IMAGE_TAG/" .circleci/config.yml
 
 read -r -p "
 Pick a Linux version for your image:
@@ -38,7 +38,7 @@ case "$LINUX_VERSION" in
 esac
 
 read -r -p "
-Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.3.3, etc.), or hit enter to skip installing Ruby
+Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.4.2, etc.), or hit enter to skip installing Ruby
 : " RUBY_VERSION_NUM
 
 if [ "$RUBY_VERSION_NUM" ] ; then
@@ -109,6 +109,27 @@ case "$POSTGRES" in
 	*)
 		perl -i -pe 's/# Postgres options: true, false/false/' .circleci/config.yml
 		perl -i -pe "s/- run: psql/# - run: psql/" .circleci/config.yml
+		;;
+esac
+
+read -r -p "
+Does your project need web browsers for browser testing? Enter the word 'yes' to install browsers/tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver) or hit enter to skip
+: " BROWSERS
+
+case "$BROWSERS" in
+	yes)
+		perl -i -pe 's/# install browsers\/tools \(PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/true/' .circleci/config.yml
+		;;
+	*)
+		perl -i -pe 's/# install browsers\/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/false/' .circleci/config.yml
+		perl -i -pe "s/- run: # phantomjs/# - run: # phantomjs/" .circleci/config.yml
+		perl -i -pe "s/name: verify phantomjs/# name: verify phantomjs/" .circleci/config.yml
+		perl -i -pe "s/command: Xvfb/# command: Xvfb/" .circleci/config.yml
+		perl -i -pe "s/background: true/# background: true/" .circleci/config.yml
+		perl -i -pe "s/- run: phantomjs/# - run: phantomjs/" .circleci/config.yml
+		perl -i -pe "s/- run: firefox/# - run: firefox/" .circleci/config.yml
+		perl -i -pe "s/- run: google-chrome/# - run: google-chrome/" .circleci/config.yml
+		perl -i -pe "s/- run: chromedriver/# - run: chromedriver/" .circleci/config.yml
 		;;
 esac
 
