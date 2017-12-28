@@ -1,6 +1,6 @@
 # CircleCI Dockerfile Wizard
 
-This tool can help you easily build Docker images with different versions/combinations of common languages/dependencies, for use on CircleCI.
+Easily build Docker images with different versions/combinations of common languages/dependencies, for use on CircleCI.
 
 ## Prerequisites
 
