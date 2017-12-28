@@ -24,16 +24,16 @@ Pick a Linux version for your image:
 
 case "$LINUX_VERSION" in
   1)
-    perl -i -pe 's/# options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL/DEBIAN_JESSIE/' .circleci/config.yml
+    perl -i -pe 's/# DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, or UBUNTU_XENIAL/DEBIAN_JESSIE/' .circleci/config.yml
     ;;
   2)
-    perl -i -pe 's/# options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL/DEBIAN_STRETCH/' .circleci/config.yml
+    perl -i -pe 's/# DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, or UBUNTU_XENIAL/DEBIAN_STRETCH/' .circleci/config.yml
     ;;
   3)
-    perl -i -pe 's/# options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL/UBUNTU_TRUSTY/' .circleci/config.yml
+    perl -i -pe 's/# DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, or UBUNTU_XENIAL/UBUNTU_TRUSTY/' .circleci/config.yml
     ;;
   4)
-    perl -i -pe 's/# options: DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, UBUNTU_XENIAL/UBUNTU_XENIAL/' .circleci/config.yml
+    perl -i -pe 's/# DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, or UBUNTU_XENIAL/UBUNTU_XENIAL/' .circleci/config.yml
     ;;
 esac
 
@@ -42,7 +42,7 @@ Pick a Ruby version from https://cache.ruby-lang.org/pub/ruby (i.e., 2.4.2, etc.
 : " RUBY_VERSION_NUM
 
 if [ "$RUBY_VERSION_NUM" ] ; then
-  perl -i -pe "s/# pick a version number from https:\/\/cache.ruby-lang.org\/pub\/ruby/$RUBY_VERSION_NUM/" .circleci/config.yml
+  perl -i -pe "s/# pick a version from https:\/\/cache.ruby-lang.org\/pub\/ruby/$RUBY_VERSION_NUM/" .circleci/config.yml
 else
   perl -i -pe "s/RUBY_VERSION_NUM:/# RUBY_VERSION_NUM:/" .circleci/config.yml
   perl -i -pe "s/- run: ruby/# - run: ruby/" .circleci/config.yml
@@ -53,7 +53,7 @@ Pick a Node version from https://nodejs.org/dist, or hit enter to skip installin
 : " NODE_VERSION_NUM
 
 if [ "$NODE_VERSION_NUM" ] ; then
-  perl -i -pe "s/# pick a version number from https:\/\/nodejs.org\/dist/$NODE_VERSION_NUM/" .circleci/config.yml
+  perl -i -pe "s/# pick a version from https:\/\/nodejs.org\/dist/$NODE_VERSION_NUM/" .circleci/config.yml
 else
   perl -i -pe "s/NODE_VERSION_NUM:/# NODE_VERSION_NUM:/" .circleci/config.yml
   perl -i -pe "s/- run: node/# - run: node/" .circleci/config.yml
@@ -64,7 +64,7 @@ Pick a Python version from https://python.org/ftp/python, or hit enter to skip i
 : " PYTHON_VERSION_NUM
 
 if [ "$PYTHON_VERSION_NUM" ] ; then
-  perl -i -pe "s/# pick a version number from https:\/\/python.org\/ftp\/python/$PYTHON_VERSION_NUM/" .circleci/config.yml
+  perl -i -pe "s/# pick a version from https:\/\/python.org\/ftp\/python/$PYTHON_VERSION_NUM/" .circleci/config.yml
 else
   perl -i -pe "s/PYTHON_VERSION_NUM:/# PYTHON_VERSION_NUM:/" .circleci/config.yml
   perl -i -pe "s/- run: python/# - run: python/" .circleci/config.yml
@@ -118,10 +118,10 @@ Does your project need web browsers for browser testing? Enter the word 'yes' to
 
 case "$BROWSERS" in
   yes)
-    perl -i -pe 's/# install browsers\/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/true/' .circleci/config.yml
+    perl -i -pe 's/# browser tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\): true, false/true/' .circleci/config.yml
     ;;
   *)
-    perl -i -pe 's/# install browsers\/tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\) for browser testing: true, false/false/' .circleci/config.yml
+    perl -i -pe 's/# browser tools \(Xvfb, PhantomJS, Firefox, Chrome, Chromedriver\): true, false/false/' .circleci/config.yml
     perl -i -pe "s/- run: # phantomjs/# - run: # phantomjs/" .circleci/config.yml
     perl -i -pe "s/name: verify phantomjs/# name: verify phantomjs/" .circleci/config.yml
     perl -i -pe "s/command: Xvfb/# command: Xvfb/" .circleci/config.yml
