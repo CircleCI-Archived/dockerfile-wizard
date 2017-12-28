@@ -4,30 +4,30 @@ image_config: &image_config
   # either as project-specific environment variables
   # or as resources in your organization's org-global Context
 
-  IMAGE_NAME: # name your image (no spaces please!)
+  IMAGE_NAME: new-test
 
-  IMAGE_TAG: # give your image a tag (no spaces please!)
+  IMAGE_TAG: v1
 
   # NOTE: if you're modifying this config.yml file manually
   # rather than using the included setup script,
   # make sure you also add the values of your IMAGE_NAME & IMAGE_TAG variables
   # to the `test_image` job (line 58)
 
-  LINUX_VERSION: # DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, or UBUNTU_XENIAL
+  LINUX_VERSION: UBUNTU_XENIAL
 
-  RUBY_VERSION_NUM: # pick a version from https://cache.ruby-lang.org/pub/ruby
+  RUBY_VERSION_NUM: 2.4.2
 
-  NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
+  NODE_VERSION_NUM: 8.0.0
 
-  PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
+  PYTHON_VERSION_NUM: 2.7.13
 
-  JAVA: # Java options: true, false
+  JAVA: true
 
-  MYSQL_CLIENT: # MySQL options: true, false
+  MYSQL_CLIENT: true
 
-  POSTGRES_CLIENT: # Postgres options: true, false
+  POSTGRES_CLIENT: true
 
-  BROWSERS: # browser tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver): true, false
+  BROWSERS: true
 
   # NOTE: if you are modifying this config.yml file manually,
   # make sure to also comment out the accompanying `run` steps (lines 66-82)
@@ -44,51 +44,51 @@ jobs:
     steps:
       - checkout
 
-##      - run: bash generate.sh > Dockerfile
+      - run: bash generate.sh > Dockerfile
 
-##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
+      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
 
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
+      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
 
-##      - store_artifacts:
-##          path: Dockerfile
+      - store_artifacts:
+          path: Dockerfile
 
-##  test_image:
-##    docker:
-##      - image: $DOCKER_USERNAME/(name of image):(image tag)
+  test_image:
+    docker:
+      - image: $DOCKER_USERNAME/new-test:v1
 
-##    steps:
+    steps:
 
-##      - checkout
+      - checkout
 
-##      - run: lsb_release -a
-##      - run: node --version
-##      - run: ruby --version
-##      - run: python --version
-##      - run: java -version
-##      - run: mysql --version
-##      - run: psql --version
+      - run: lsb_release -a
+      - run: node --version
+      - run: ruby --version
+      - run: python --version
+      - run: java -version
+      - run: mysql --version
+      - run: psql --version
 
-##      - run: # phantomjs
-##          name: verify phantomjs
-##          command: Xvfb :99 -screen 0 1280x1024x24 && sleep 10
-##          background: true
+      - run: # phantomjs
+          name: verify phantomjs
+          command: Xvfb :99 -screen 0 1280x1024x24 && sleep 10
+          background: true
 
-##      - run: phantomjs --version
-##      - run: firefox --version
-##      - run: google-chrome --version
-##      - run: chromedriver --version
+      - run: phantomjs --version
+      - run: firefox --version
+      - run: google-chrome --version
+      - run: chromedriver --version
 
-##workflows:
-##  version: 2
-##  dockerfile_wizard:
-##    jobs:
-##      - build:
-##          context: org-global
+workflows:
+  version: 2
+  dockerfile_wizard:
+    jobs:
+      - build:
+          context: org-global
 
-##      - test_image:
-##          context: org-global
-##          requires:
-##            - build
+      - test_image:
+          context: org-global
+          requires:
+            - build
