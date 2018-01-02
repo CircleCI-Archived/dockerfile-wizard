@@ -1,3 +1,14 @@
+#!/usr/bin/env bats
+
+@test "linux version" {
+  lsb_release -a | grep "$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
+}
+
+@test "addition using dc" {
+  result="$(echo 2 2+p | dc)"
+  [ "$result" -eq 4 ]
+}
+
 #!/bin/bash
 
 ##      - run: lsb_release -a
