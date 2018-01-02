@@ -44,7 +44,7 @@ jobs:
     steps:
       - checkout
 
-##      - run: bash generate.sh > Dockerfile
+##      - run: bash scripts/generate.sh > Dockerfile
 
 ##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
@@ -63,23 +63,11 @@ jobs:
 
 ##      - checkout
 
-##      - run: lsb_release -a
-##      - run: node --version
-##      - run: ruby --version
-##      - run: python --version
-##      - run: java -version
-##      - run: mysql --version
-##      - run: psql --version
-
-##      - run: # phantomjs
-##          name: verify phantomjs
-##          command: Xvfb :99 -screen 0 1280x1024x24 && sleep 10
-##          background: true
-
-##      - run: phantomjs --version
-##      - run: firefox --version
-##      - run: google-chrome --version
-##      - run: chromedriver --version
+##      - run:
+##          name: run tests
+##          command: bash scripts/test.sh
+##          environment:
+##            <<: *image_config
 
 ##workflows:
 ##  version: 2

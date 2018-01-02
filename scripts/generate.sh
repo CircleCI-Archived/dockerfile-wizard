@@ -72,6 +72,12 @@ if [ $POSTGRES_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install postgresql-client"
 fi
 
+# install bats for testing
+echo "RUN git clone https://github.com/sstephenson/bats.git \
+  && cd bats \
+  && ./install.sh /usr/local"
+
+# install lsb-release, etc., for testing linux distro
 echo "RUN apt-get update && apt-get -y install lsb-release unzip"
 
 if [ $BROWSERS = "true" ] ; then
@@ -91,7 +97,7 @@ RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/firefox
   && dpkg -i /tmp/firefox.deb || apt-get -f install  \
   && apt-get install -y libgtk3.0-cil-dev libasound2 libasound2 libdbus-glib-1-2 libdbus-1-3 \
   && rm -rf /tmp/firefox.deb"
-  
+
 echo "# install chrome
 RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
   && (dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get -fy install)  \
