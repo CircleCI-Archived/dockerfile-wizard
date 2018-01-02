@@ -65,7 +65,7 @@ jobs:
 
 ##      - run:
 ##          name: run tests
-##          command: bash scripts/test.sh
+##          command: bats scripts/tests.bats
 ##          environment:
 ##            <<: *image_config
 
