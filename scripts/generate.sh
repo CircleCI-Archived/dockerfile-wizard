@@ -75,7 +75,9 @@ fi
 # install bats for testing
 echo "RUN git clone https://github.com/sstephenson/bats.git \
   && cd bats \
-  && ./install.sh /usr/local"
+  && ./install.sh /usr/local \
+  && cd .. \
+  && rm -rf bats"
 
 # install lsb-release, etc., for testing linux distro
 echo "RUN apt-get update && apt-get -y install lsb-release unzip"
