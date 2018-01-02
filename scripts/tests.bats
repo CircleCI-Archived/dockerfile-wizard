@@ -5,7 +5,7 @@
 }
 
 @test "node version" {
-  if [ ! -e $NODE_VERSION_NUM ] ; then
+  if [ -e $NODE_VERSION_NUM ] ; then
     skip "node not installed"
   fi
 
@@ -13,7 +13,7 @@
 }
 
 @test "ruby version" {
-  if [ ! -e $RUBY_VERSION_NUM ] ; then
+  if [ -e $RUBY_VERSION_NUM ] ; then
     skip "ruby not installed"
   fi
 
@@ -21,7 +21,7 @@
 }
 
 @test "python version" {
-  if [ ! -e $PYTHON_VERSION_NUM ] ; then
+  if [ -e $PYTHON_VERSION_NUM ] ; then
     skip "python not installed"
   fi
 
