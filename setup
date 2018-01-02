@@ -64,10 +64,25 @@ Pick a Python version from https://python.org/ftp/python, or hit enter to skip i
 : " PYTHON_VERSION_NUM
 
 if [ "$PYTHON_VERSION_NUM" ] ; then
-  perl -i -pe "s/# pick a version from https:\/\/python.org\/ftp\/python/$PYTHON_VERSION_NUM/" .circleci/config.yml
+  perl -i -pe "s|# pick a version from https://python.org/ftp/python|$PYTHON_VERSION_NUM|" .circleci/config.yml
 else
   perl -i -pe "s/PYTHON_VERSION_NUM:/# PYTHON_VERSION_NUM:/" .circleci/config.yml
   perl -i -pe "s/- run: python/# - run: python/" .circleci/config.yml
+fi
+
+read -r -p "
+Pick a PHP version from http://php.net/downloads.php, type 'repo' for the repository version, or hit enter to skip installing PHP
+: " PHP_VERSION_NUM
+
+if [ "$PHP_VERSION_NUM" ] ; then
+  if [ $PHP_VERSION_NUM == "repo" ] ; then
+    perl -i -pe "s|# define \`true' to install PHP from the system's repositories|true|" .circleci/config.yml
+  else
+    perl -i -pe "s|# pick a version from http://php.net/downloads.php|$PHP_VERSION_NUM|" .circleci/config.yml
+  fi
+else
+  perl -i -pe "s/PHP_VERSION_NUM:/# PHP_VERSION_NUM:/" .circleci/config.yml
+  perl -i -pe "s/- run: php/# - run: php/" .circleci/config.yml
 fi
 
 read -r -p "

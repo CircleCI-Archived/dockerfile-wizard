@@ -21,6 +21,11 @@ image_config: &image_config
 
   PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
 
+  PHP_VERSION_NUM: # pick a version from http://php.net/downloads.php (no extensions included)
+  PHP_FROM_REPOS: # define `true' to install PHP from the system's repositories
+                  # including extensions
+                  # PHP_VERSION_NUM has precedence over PHP_FROM_REPOS
+
   JAVA: # Java options: true, false
 
   MYSQL_CLIENT: # MySQL options: true, false

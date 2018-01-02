@@ -33,9 +33,20 @@ if [ ! -e $PYTHON_VERSION_NUM ] ; then
     make install"
 fi
 
-# if [ ! -e $PHP_VERSION_NUM ] ; then
-#     wget "http://php.net/distributions/php-${PHP_VERSION_NUM}.tar.xz"
-# fi
+if [ ! -e $PHP_VERSION_NUM ] ; then
+    echo "RUN wget http://php.net/get/php-$PHP_VERSION_NUM.tar.bz2/from/this/mirror && \
+    tar zxvf php-$PHP_VERSION_NUM.tar.bz2 && \
+    rm php-$PHP_VERSION_NUM.tar.bz2 && \
+    cd php-$PHP_VERSION_NUM && \
+    ./configure && \
+    make install && \
+    php --version"
+else if [ ! -e $PHP_FROM_REPOS ] ; then 
+    apt-get update
+    for a in "" 7.2 7.1 7.0 7 5 ; do
+      apt-get install -y --force-yes php$a php$a-common php$a-zip php$a-curl php$a-mbstring php$a-json php$a-curl php$a-cli php$a-bz2 php$a-bcmath php$a-snmp php$a-soap php$a-xml php$a-sqlite3 php$a-pgsql php$a-mcrypt php$a-mysql && break
+    done
+fi
 
 if [ $JAVA = "true" ] ; then
 cat << EOF
