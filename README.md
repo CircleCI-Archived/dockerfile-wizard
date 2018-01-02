@@ -1,11 +1,11 @@
 # CircleCI Dockerfile Wizard
 
-This tool can help you easily build Docker images with different versions/combinations of common languages/dependencies, for use on CircleCI.
+Easily build Docker images with different versions/combinations of common languages/dependencies, for use on CircleCI.
 
 ## Prerequisites
 
 - [CircleCI account](https://circleci.com/signup)
-- [Docker Hub account](https://hub.docker.com) (Docker itself **does not** need to be installed on your computer, however)
+- [Docker Hub account](https://hub.docker.com) (Docker itself **does not** need to be installed on your computer)
 - [Make](https://en.wikipedia.org/wiki/Make_(software)) & [Perl](https://perl.org) (included in most macOS & Linux installations)
 
 ## Usage
@@ -22,7 +22,7 @@ This tool can help you easily build Docker images with different versions/combin
 
 **4.** Enter the cloned `dockerfile-wizard` directory and run `make ready` to prepare the `config.yml` file for building Docker images on CircleCI
 
-**5.** Run `./setup` in the cloned directory, or else manually add the versions/dependencies that you need to `.circleci/config.yml` as specified in the [`image_config` section](https://github.com/circleci/dockerfile-wizard/blob/231237de1f6aaa0d197998044867816e0f8e7454/.circleci/config.yml#L1)
+**5.** Run `make setup` in the cloned directory, or else manually add the versions/dependencies that you need to `.circleci/config.yml` as specified in the [`image_config` section](https://github.com/circleci/dockerfile-wizard/blob/231237de1f6aaa0d197998044867816e0f8e7454/.circleci/config.yml#L1)
 
 **6.** Commit and push your changes
 
@@ -32,7 +32,9 @@ To use the Docker Wizard again, run `make reset` in the cloned directory, then r
 
 ### Notes
 
-- x
+- This repository has not been tested with every possible combination of versions/dependencies; you may encounter errors with some legacy versions of various languages/tools
+- [Feedback/questions/bugs welcome!](https://github.com/CircleCI-Public/dockerfile-wizard/issues)
+- Want to do all this yourself? Check out our video on [creating custom Docker images for CircleCI](https://youtube.com/watch?v=JYVLeguIbe0)
 
 ### To-do
 
