@@ -6,14 +6,14 @@ image_config: &image_config
 
   IMAGE_NAME: bats-test
 
-  IMAGE_TAG: v1
+  IMAGE_TAG: v2
 
   # NOTE: if you're modifying this config.yml file manually
   # rather than using the included setup script,
   # make sure you also add the values of your IMAGE_NAME & IMAGE_TAG variables
   # to the `test_image` job (line 58)
 
-  LINUX_VERSION: DEBIAN_JESSIE
+  LINUX_VERSION: DEBIAN_STRETCH
 
   # RUBY_VERSION_NUM: # pick a version from https://cache.ruby-lang.org/pub/ruby
 
@@ -57,7 +57,7 @@ jobs:
 
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/bats-test:v1
+      - image: $DOCKER_USERNAME/bats-test:v2
 
     steps:
 
