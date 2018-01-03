@@ -24,8 +24,9 @@
   if [ -e $PYTHON_VERSION_NUM ] ; then
     skip "python not installed"
   fi
-
-  python --version | grep "$PYTHON_VERSION_NUM"
+  
+  result="$(python --version)"
+  [ "$result" -eq "Python $PYTHON_VERSION_NUM" ]
 }
 
 @test "java" {
