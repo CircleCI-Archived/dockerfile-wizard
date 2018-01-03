@@ -25,7 +25,7 @@
     skip "python not installed"
   fi
 
-  python --version | grep $PYTHON_VERSION_NUM
+  python --version | grep "$PYTHON_VERSION_NUM"
 }
 
 @test "java" {
