@@ -54,12 +54,15 @@
   psql --version
 }
 
+setup() {
+  nohup Xvfb :99 > /dev/null 2>&1
+}
+
 @test "phantomjs" {
   if [ $BROWSERS != "true" ] ; then
     skip "no browser tools installed"
   fi
-
-  nohup Xvfb :99 > /dev/null 2>&1
+  
   phantomjs --version
 }
 
