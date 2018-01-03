@@ -26,7 +26,7 @@
   fi
   
   result="$(python --version)"
-  [ "$result" -eq "Python $PYTHON_VERSION_NUM" ]
+  [ "$result" == "Python $PYTHON_VERSION_NUM" ]
 }
 
 @test "java" {
