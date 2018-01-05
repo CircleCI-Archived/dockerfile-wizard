@@ -28,7 +28,7 @@ Easily build Docker images with different versions/combinations of common langua
 
 Once the build has finished, your image will be available at `http://hub.docker.com/r/DOCKER_USERNAME/IMAGE_NAME` and can be used in other projects building on CircleCI (or anywhere else!). The Dockerfile for your image will be stored as an artifact in this project's `build` job.
 
-To use the Docker Wizard again, run `make reset` in the cloned directory, then repeat steps **4-6**.
+To use the Dockerfile Wizard again, run `make reset` in the cloned directory, then repeat steps **4-6**.
 
 ### How it works
 
