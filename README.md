@@ -30,6 +30,12 @@ Once the build has finished, your image will be available at `http://hub.docker.
 
 To use the Docker Wizard again, run `make reset` in the cloned directory, then repeat steps **4-6**.
 
+### How it works
+
+1. The `setup` script adds your requested version information to the config.yml file as environment variables
+1. The `generate.sh` script runs on CircleCI and generates a Dockerfile based on those environment variables
+1. CircleCI builds your Docker image from the generated Dockerfile, deploys it using your Docker credentials, and then tests your image using [Bats](https://github.com/sstephenson/bats), which we install in every Docker image built via this repository
+
 ### Notes
 
 - This repository has not been tested with every possible combination of versions/dependencies; you may encounter errors with some legacy versions of various languages/tools
