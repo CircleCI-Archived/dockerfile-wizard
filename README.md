@@ -38,7 +38,7 @@ To use the Docker Wizard again, run `make reset` in the cloned directory, then r
 
 ### Notes
 
-- This repository has not been tested with every possible combination of versions/dependencies; you may encounter errors with some legacy versions of various languages/tools
+- This repository has not been tested with every possible permutation of versions/dependencies; you may encounter errors with some combinations of various languages/tools
 - [Feedback/questions/bugs welcome!](https://github.com/CircleCI-Public/dockerfile-wizard/issues)
 
 ### To-do
