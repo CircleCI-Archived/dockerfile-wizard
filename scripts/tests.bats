@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+# note to self: look @ this https://engineyard.com/blog/bats-test-command-line-tools
+
 @test "linux version" {
   lsb_release -a | grep "$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 }
