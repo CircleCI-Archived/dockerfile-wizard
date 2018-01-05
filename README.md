@@ -28,11 +28,18 @@ Easily build Docker images with different versions/combinations of common langua
 
 Once the build has finished, your image will be available at `http://hub.docker.com/r/DOCKER_USERNAME/IMAGE_NAME` and can be used in other projects building on CircleCI (or anywhere else!). The Dockerfile for your image will be stored as an artifact in this project's `build` job.
 
-To use the Docker Wizard again, run `make reset` in the cloned directory, then repeat steps **4-6**.
+To use the Dockerfile Wizard again, run `make reset` in the cloned directory, then repeat steps **4-6**.
+
+### How it works
+
+1. The `setup` script adds your requested version information to the config.yml file as environment variables
+1. The `generate.sh` script runs on CircleCI and generates a Dockerfile based on those environment variables
+1. CircleCI builds your Docker image from the generated Dockerfile, deploys it using your Docker credentials, and then tests your image using [Bats](https://github.com/sstephenson/bats), which we install in every Docker image built via this repository
 
 ### Notes
 
-- This repository has not been tested with every possible combination of versions/dependencies; you may encounter errors with some legacy versions of various languages/tools
+- The portions of this repository that run on your local computer are intended for Linux/macOS operating systems; they may not work on Windows
+- This repository has not been tested with every possible permutation of versions/dependencies; you may encounter errors with some combinations of various languages/tools
 - [Feedback/questions/bugs welcome!](https://github.com/CircleCI-Public/dockerfile-wizard/issues)
 - Want to do all this yourself? Check out our video on [creating custom Docker images for CircleCI](https://youtube.com/watch?v=JYVLeguIbe0)
 
