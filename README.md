@@ -39,7 +39,7 @@ To use the Dockerfile Wizard again, run `make reset` in the cloned directory, th
 ### Notes
 
 - The portions of this repository that run on your local computer are intended for Linux/macOS operating systems; they may not work on Windows
-- This repository has not been tested with every possible permutation of versions/dependencies, and you may encounter errors with some combinations of various languages/tools. If your `build` job fails, check your `docker build` step—it's most likely a compilation error with a particular version of Ruby, Node, or Python.
+- This repository has not been tested with every possible permutation of versions/dependencies, and you may encounter errors with some combinations of various languages/tools. If your `build` job fails, check its `docker build` step—there's likely a compilation error with a particular version of Ruby, Node, or Python.
 - Thanks to [jmason](https://github.com/jmason/tap-to-junit-xml) for the `tap-to-junit` script!
 - [Feedback/questions/bugs welcome!](https://github.com/CircleCI-Public/dockerfile-wizard/issues)
 - Want to do all this yourself? Check out our video on [creating custom Docker images for CircleCI](https://youtube.com/watch?v=JYVLeguIbe0)
