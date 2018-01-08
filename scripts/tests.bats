@@ -26,7 +26,7 @@
   fi
   
   # before python 3.4, `python --version` sends output to STDERR rather than STDOUT, so we need `2>&1`
-  if [ $PYTHON_VERSION_NUM -lt 3.4 ]
+  if [[ $PYTHON_VERSION_NUM < "3.4" ]]
     python --version 2>&1 | grep $PYTHON_VERSION_NUM
   else
     python --version | grep $PYTHON_VERSION_NUM
