@@ -25,7 +25,7 @@
   if [ -e $PYTHON_VERSION_NUM ] ; then
     skip "python not installed"
   fi
-  
+
   result="$(python --version)"
   [ "$result" == "Python $PYTHON_VERSION_NUM" ]
 }
@@ -59,7 +59,7 @@
   if [ $BROWSERS != "true" ] ; then
     skip "no browser tools installed"
   fi
-  
+
   nohup Xvfb :99 > /dev/null 2>&1 && sleep 10 && phantomjs --version
 }
 

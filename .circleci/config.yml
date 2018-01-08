@@ -65,9 +65,17 @@ jobs:
 
 ##      - run:
 ##          name: run tests
-##          command: bats scripts/tests.bats
+##          command: |
+##            bats scripts/tests.bats | perl scripts/tap-to-junit.sh > results.xml
+##            mkdir -p test_results/bats && mv results.xml test_results/bats
 ##          environment:
 ##            <<: *image_config
+
+##      - store_test_results:
+##          path: test_results/bats
+
+##      - store_artifacts:
+##          path: test_results/bats
 
 ##workflows:
 ##  version: 2
