@@ -30,9 +30,13 @@
   fi
 
   if [[ $PYTHON_VERSION_NUM < "3.4" ]] ; then
-    python --version 2>&1 | grep $PYTHON_VERSION_NUM
+    if [[ $PYTHON_VERSION_NUM < "3" ]] ; then
+      python --version 2>&1 | grep $PYTHON_VERSION_NUM
+    else
+      python3 --version 2>&1 | grep $PYTHON_VERSION_NUM
+    fi
   else
-    python --version | grep $PYTHON_VERSION_NUM
+    python3 --version | grep $PYTHON_VERSION_NUM
   fi
 }
 
