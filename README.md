@@ -38,6 +38,7 @@ To use the Dockerfile Wizard again, run `make reset` in the cloned directory, th
 
 ### Notes
 
+- Thanks to [jmason](https://github.com/jmason/tap-to-junit-xml/tree/master) for the `tap-to-junit` script!
 - The portions of this repository that run on your local computer are intended for Linux/macOS operating systems; they may not work on Windows
 - This repository has not been tested with every possible permutation of versions/dependencies; you may encounter errors with some combinations of various languages/tools
 - [Feedback/questions/bugs welcome!](https://github.com/CircleCI-Public/dockerfile-wizard/issues)
