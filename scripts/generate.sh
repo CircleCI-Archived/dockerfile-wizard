@@ -3,7 +3,7 @@
 echo "FROM buildpack-deps:$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 
 if [ ! -e $RUBY_VERSION_NUM ] ; then
-    echo "RUN wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
+    echo "RUN apt-get install -y libssl-dev && wget http://ftp.ruby-lang.org/pub/ruby/$(awk -F'.' '{ print $1"."$2 }' <<< $RUBY_VERSION_NUM)/ruby-$RUBY_VERSION_NUM.tar.gz && \
     tar -xzvf ruby-$RUBY_VERSION_NUM.tar.gz && \
     cd ruby-$RUBY_VERSION_NUM/ && \
     ./configure && \
