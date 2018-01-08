@@ -11,7 +11,7 @@ image_config: &image_config
   # NOTE: if you're modifying this config.yml file manually
   # rather than using the included setup script,
   # make sure you also add the values of your IMAGE_NAME & IMAGE_TAG variables
-  # to the `test_image` job (line 58)
+  # to the `test_image` job (line 55)
 
   LINUX_VERSION: # DEBIAN_JESSIE, DEBIAN_STRETCH, UBUNTU_TRUSTY, or UBUNTU_XENIAL
 
@@ -28,11 +28,6 @@ image_config: &image_config
   POSTGRES_CLIENT: # Postgres options: true, false
 
   BROWSERS: # browser tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver): true, false
-
-  # NOTE: if you are modifying this config.yml file manually,
-  # make sure to also comment out the accompanying `run` steps (lines 66-82)
-  # in the `test_image` job for any languages/dependencies
-  # that you are not installing in your Docker image
 
 version: 2
 jobs:
@@ -58,16 +53,30 @@ jobs:
 ##  test_image:
 ##    docker:
 ##      - image: $DOCKER_USERNAME/(name of image):(image tag)
+##        environment:
+##          <<: *image_config
 
 ##    steps:
-
 ##      - checkout
 
 ##      - run:
-##          name: run tests
-##          command: bats scripts/tests.bats
-##          environment:
-##            <<: *image_config
+##          name: start Xvfb for phantomjs test
+##          command: Xvfb :99
+##          background: true
+
+##      - run:
+##          name: bats tests
+##          command: |
+##            mkdir -p test_results/bats
+##            bats scripts/tests.bats | \
+##            perl scripts/tap-to-junit.sh > \
+##            test_results/bats/results.xml
+
+##      - store_test_results:
+##          path: test_results
+
+##      - store_artifacts:
+##          path: test_results
 
 ##workflows:
 ##  version: 2

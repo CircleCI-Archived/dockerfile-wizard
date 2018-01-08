@@ -1,5 +1,7 @@
 #!/usr/bin/env bats
 
+# note to self: look @ this https://engineyard.com/blog/bats-test-command-line-tools
+
 @test "linux version" {
   lsb_release -a | grep "$(awk -F'_' '{print tolower($2)}' <<< $LINUX_VERSION)"
 }
@@ -20,16 +22,21 @@
   ruby --version | grep $RUBY_VERSION_NUM
 }
 
+# before python 3.4, `python --version` sends output to STDERR rather than STDOUT, so we need `2>&1`
+
 @test "python version" {
   if [ -e $PYTHON_VERSION_NUM ] ; then
     skip "python not installed"
   fi
-  
-  # before python 3.4, `python --version` sends output to STDERR rather than STDOUT, so we need `2>&1`
+
   if [[ $PYTHON_VERSION_NUM < "3.4" ]] ; then
-    python --version 2>&1 | grep $PYTHON_VERSION_NUM
+    if [[ $PYTHON_VERSION_NUM < "3" ]] ; then
+      python --version 2>&1 | grep $PYTHON_VERSION_NUM
+    else
+      python3 --version 2>&1 | grep $PYTHON_VERSION_NUM
+    fi
   else
-    python --version | grep $PYTHON_VERSION_NUM
+    python3 --version | grep $PYTHON_VERSION_NUM
   fi
 }
 
@@ -58,12 +65,11 @@
 }
 
 @test "phantomjs" {
-  skip "until i can figure out how to successfully start xvfb in the background here"
   if [ $BROWSERS != "true" ] ; then
     skip "no browser tools installed"
   fi
-  
-  nohup Xvfb :99 > /dev/null 2>&1 && sleep 10 && phantomjs --version
+
+  phantomjs --version
 }
 
 @test "firefox" {
