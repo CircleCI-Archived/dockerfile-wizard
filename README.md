@@ -22,7 +22,7 @@ Easily build Docker images with different versions/combinations of common langua
 
 **4.** Enter the cloned `dockerfile-wizard` directory and run `make ready` to prepare the `config.yml` file for building Docker images on CircleCI
 
-**5.** Run `make setup` in the cloned directory, or else manually add the versions/dependencies that you need to `.circleci/config.yml` as specified in the [`image_config` section](https://github.com/circleci/dockerfile-wizard/blob/231237de1f6aaa0d197998044867816e0f8e7454/.circleci/config.yml#L1)
+**5.** Run `make setup` in the cloned directory, or else manually add the versions/dependencies that you need to `.circleci/config.yml` as specified in the [`image_config` section](https://github.com/CircleCI-Public/dockerfile-wizard/blob/master/.circleci/config.yml)
 
 **6.** Commit and push your changes
 
@@ -39,7 +39,7 @@ To use the Dockerfile Wizard again, run `make reset` in the cloned directory, th
 ### Notes
 
 - The portions of this repository that run on your local computer are intended for Linux/macOS operating systems; they may not work on Windows
-- This repository has not been tested with every possible permutation of versions/dependencies, and you may encounter errors with some combinations of various languages/tools. If your `build` job fails, check your `docker build` step—it's most likely a compilation error with a particular version of Ruby, Node, or Python.
+- This repository has not been tested with every possible permutation of versions/dependencies, and you may encounter errors with some combinations of various languages/tools. If your `build` job fails, check its `docker build` step—there's likely a compilation error with a particular version of Ruby, Node, or Python.
 - Thanks to [jmason](https://github.com/jmason/tap-to-junit-xml) for the `tap-to-junit` script!
 - [Feedback/questions/bugs welcome!](https://github.com/CircleCI-Public/dockerfile-wizard/issues)
 - Want to do all this yourself? Check out our video on [creating custom Docker images for CircleCI](https://youtube.com/watch?v=JYVLeguIbe0)
