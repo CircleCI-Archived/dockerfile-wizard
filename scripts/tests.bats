@@ -70,6 +70,15 @@
   dockerize --version
 }
 
+
+@test "heroku cli" {
+  if [ $HEROKU_CLI != "true" ] ; then
+    skip "heroku cli not installed"
+  fi
+
+  heroku --version
+}
+
 @test "phantomjs" {
   if [ $BROWSERS != "true" ] ; then
     skip "no browser tools installed"

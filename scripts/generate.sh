@@ -84,6 +84,10 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 EOF
 fi
 
+if [ $HEROKU_CLI = "true" ] ; then
+    echo "RUN curl https://cli-assets.heroku.com/install-ubuntu.sh | sh"
+fi
+
 # install bats for testing
 echo "RUN git clone https://github.com/sstephenson/bats.git \
   && cd bats \

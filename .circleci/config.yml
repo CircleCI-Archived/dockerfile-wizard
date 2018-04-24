@@ -29,6 +29,8 @@ image_config: &image_config
 
   DOCKERIZE: # Dockerize options: true, false
 
+  HEROKU_CLI: # Heroku CLI options: true, false
+
   BROWSERS: # browser tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver): true, false
 
 version: 2
