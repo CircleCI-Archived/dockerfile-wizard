@@ -74,6 +74,16 @@ if [ $POSTGRES_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install postgresql-client"
 fi
 
+if [ $DOCKERIZE = "true" ] ; then
+DOCKERIZE_VERSION="v0.6.1"
+
+cat << EOF
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \\
+    tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \\
+    rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+EOF
+fi
+
 # install bats for testing
 echo "RUN git clone https://github.com/sstephenson/bats.git \
   && cd bats \

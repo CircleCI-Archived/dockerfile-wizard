@@ -113,6 +113,20 @@ case "$POSTGRES" in
 esac
 
 read -r -p "
+Does your project need Dockerize? Enter the word 'yes' to install Dockerize or hit enter to skip installing Dockerize
+: " DOCKERIZE
+
+case "$DOCKERIZE" in
+  yes)
+    perl -i -pe 's/# Dockerize options: true, false/true/' .circleci/config.yml
+    ;;
+  *)
+    perl -i -pe 's/# Dockerize options: true, false/false/' .circleci/config.yml
+    perl -i -pe "s/- run: dockerize/# - run: dockerize/" .circleci/config.yml
+    ;;
+esac
+
+read -r -p "
 Does your project need web browsers for browser testing? Enter the word 'yes' to install browsers/tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver) or hit enter to skip
 : " BROWSERS
 

@@ -27,6 +27,8 @@ image_config: &image_config
 
   POSTGRES_CLIENT: # Postgres options: true, false
 
+  DOCKERIZE: # Dockerize options: true, false
+
   BROWSERS: # browser tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver): true, false
 
 version: 2

@@ -62,6 +62,14 @@
   psql --version
 }
 
+@test "dockerize" {
+  if [ $DOCKERIZE != "true" ] ; then
+    skip "dockerize not installed"
+  fi
+
+  dockerize --version
+}
+
 @test "phantomjs" {
   if [ $BROWSERS != "true" ] ; then
     skip "no browser tools installed"
