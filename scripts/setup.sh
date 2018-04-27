@@ -127,6 +127,20 @@ case "$DOCKERIZE" in
 esac
 
 read -r -p "
+Does your project need Heroku CLI? Enter the word 'yes' to install Heroku CLI or hit enter to skip installing Heroku CLI
+: " HEROKU_CLI
+
+case "$HEROKU_CLI" in
+  yes)
+    perl -i -pe 's/# Heroku CLI options: true, false/true/' .circleci/config.yml
+    ;;
+  *)
+    perl -i -pe 's/# Heroku CLI options: true, false/false/' .circleci/config.yml
+    perl -i -pe "s/- run: heroku/# - run: heroku/" .circleci/config.yml
+    ;;
+esac
+
+read -r -p "
 Does your project need web browsers for browser testing? Enter the word 'yes' to install browsers/tools (Xvfb, PhantomJS, Firefox, Chrome, Chromedriver) or hit enter to skip
 : " BROWSERS
 
