@@ -60,6 +60,20 @@ else
 fi
 
 read -r -p "
+Does your project need Yarn? Enter the word 'yes' to install Yarn or hit enter to skip installing Yarn
+: " YARN
+
+case "$YARN" in
+  yes)
+    perl -i -pe 's/# Yarn options: true, false/true/' .circleci/config.yml
+    ;;
+  *)
+    perl -i -pe 's/# Yarn options: true, false/false/' .circleci/config.yml
+    perl -i -pe "s/- run: yarn/# - run: yarn/" .circleci/config.yml
+    ;;
+esac
+
+read -r -p "
 Pick a Python version from https://python.org/ftp/python, or hit enter to skip installing Python
 : " PYTHON_VERSION_NUM
 

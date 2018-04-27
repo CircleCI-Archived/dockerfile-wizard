@@ -26,6 +26,13 @@ if [ ! -e $NODE_VERSION_NUM ] ; then
     rm -r node-v$NODE_VERSION_NUM"
 fi
 
+if [ $YARN = "true" ] ; then
+    echo "RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -"
+    echo "RUN echo \"deb https://dl.yarnpkg.com/debian/ stable main\" | tee /etc/apt/sources.list.d/yarn.list"
+    echo "RUN apt-get -y install apt-transport-https "
+    echo "RUN apt-get update && apt-get -y install yarn"
+fi
+
 if [ ! -e $PYTHON_VERSION_NUM ] ; then
     echo "RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION_NUM/Python-$PYTHON_VERSION_NUM.tgz && \
     tar xzf Python-$PYTHON_VERSION_NUM.tgz && \

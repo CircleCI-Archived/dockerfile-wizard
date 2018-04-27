@@ -19,6 +19,8 @@ image_config: &image_config
 
   NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
 
+  YARN: # Yarn options: true, false
+
   PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
 
   JAVA: # Java options: true, false
