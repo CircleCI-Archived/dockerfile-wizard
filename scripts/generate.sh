@@ -36,6 +36,9 @@ if [ ! -e $PYTHON_VERSION_NUM ] ; then
 fi
 
 ## Fender-specific items ##
+
+echo "RUN apt-get install unzip"
+
 # Install latest version of Terraform
 echo "RUN git clone https://github.com/kamatama41/tfenv.git $HOME/.tfenv && \
 export PATH=\"$HOME/.tfenv/bin:$PATH\" && \
