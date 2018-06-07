@@ -35,6 +35,21 @@ if [ ! -e $PYTHON_VERSION_NUM ] ; then
     make install"
 fi
 
+## Fender-specific items ##
+# Install latest version of Terraform
+echo "RUN git clone https://github.com/kamatama41/tfenv.git $HOME/.tfenv && \
+export PATH=\"$HOME/.tfenv/bin:$PATH\" && \
+tfenv install latest"
+
+echo "RUN apt-get install -y python2.7 && \
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1 && \
+sudo apt-get -y install python-simplejson python-minimal aptitude python-pip python-dev && \
+pip install --upgrade pip && \
+pip install google_compute_engine boto boto3 botocore six awscli 'ansible==2.5.0'"
+# Install Ansible
+
+## END Fender-specific items ##
+
 # if [ ! -e $PHP_VERSION_NUM ] ; then
 #     wget "http://php.net/distributions/php-${PHP_VERSION_NUM}.tar.xz"
 # fi
