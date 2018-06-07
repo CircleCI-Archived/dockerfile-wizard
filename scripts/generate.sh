@@ -37,7 +37,7 @@ fi
 
 ## Fender-specific items ##
 
-echo "RUN apt-get install unzip"
+echo "RUN apt-get install unzip sudo"
 
 # Install latest version of Terraform
 echo "RUN git clone https://github.com/kamatama41/tfenv.git $HOME/.tfenv && \
