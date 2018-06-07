@@ -37,6 +37,9 @@ jobs:
     machine: true
     environment:
       <<: *image_config
+      GOVERS: "1.9.4"
+      GOPATH: "$HOME/gowork$GOVERS"
+      GOROOT: "/usr/local/go$GOVERS"
 
     steps:
       - checkout
