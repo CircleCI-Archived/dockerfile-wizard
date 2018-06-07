@@ -15,11 +15,11 @@ image_config: &image_config
 
   LINUX_VERSION: UBUNTU_XENIAL
 
-  RUBY_VERSION_NUM: false
+  RUBY_VERSION_NUM:
 
-  NODE_VERSION_NUM: false
+  NODE_VERSION_NUM:
 
-  PYTHON_VERSION_NUM: false
+  PYTHON_VERSION_NUM:
 
   JAVA: false
 
