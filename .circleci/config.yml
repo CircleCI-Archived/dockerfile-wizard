@@ -85,9 +85,9 @@ workflows:
   dockerfile_wizard:
     jobs:
       - build:
-          context: org-global
+          context: Global
 
       - test_image:
-          context: org-global
+          context: Global
           requires:
             - build
