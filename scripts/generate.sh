@@ -44,6 +44,7 @@ echo "RUN wget https://storage.googleapis.com/golang/go$GOVERS.linux-amd64.tar.g
 tar -xzf go$GOVERS.linux-amd64.tar.gz && \
 mv go /usr/local/go$GOVERS && \
 rm go$GOVERS.linux-amd64.tar.gz && \
+mkdir gowork$GOVERS && \
 export PATH=\"/usr/local/go$GOVERS/bin:$PATH\" && \
 go get golang.org/x/tools/cmd/cover && \
 go get github.com/mattn/goveralls && \
