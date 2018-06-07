@@ -37,7 +37,7 @@ fi
 
 ## Fender-specific items ##
 
-echo "RUN apt-get install -y unzip sudo rsync parallel tar jq"
+echo "RUN apt-get install -y unzip sudo rsync parallel tar jq wget"
 
 # Install Golang
 echo "RUN wget https://storage.googleapis.com/golang/go$GOVERS.linux-amd64.tar.gz && \
