@@ -47,10 +47,10 @@ rm go$GOVERS.linux-amd64.tar.gz && \
 export PATH=\"/usr/local/go$GOVERS/bin:$PATH\" && \
 go get golang.org/x/tools/cmd/cover && \
 go get github.com/mattn/goveralls && \
-\(wget -q -O honeymarker https://honeycomb.io/download/honeymarker/linux/1.9 && \
-      echo 'e74514a2baaf63a5828ff62ca2ca1aa86b3a4ab223ab6a7c53f969d7b55e37fb  honeymarker' | sha256sum -c && \
-      chmod 755 ./honeymarker && \
-      sudo mv honeymarker /usr/bin\)"
+wget -q -O honeymarker https://honeycomb.io/download/honeymarker/linux/1.9 && \
+  echo 'e74514a2baaf63a5828ff62ca2ca1aa86b3a4ab223ab6a7c53f969d7b55e37fb  honeymarker' | sha256sum -c && \
+  chmod 755 ./honeymarker && \
+  sudo mv honeymarker /usr/bin"
 
 # Install latest version of Terraform
 echo "RUN git clone https://github.com/kamatama41/tfenv.git $HOME/.tfenv && \
