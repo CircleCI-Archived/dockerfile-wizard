@@ -40,7 +40,7 @@ fi
 echo "RUN apt-get install -y unzip sudo rsync parallel tar jq wget"
 
 # Install Golang
-echo "RUN export GOPATH=\"$HOME/gowork$GOVERS\" && \
+echo "RUN export GOPATH=\"/root/gowork$GOVERS\" && \
 export GOROOT=\"/usr/local/go$GOVERS\" && \
 wget https://storage.googleapis.com/golang/go$GOVERS.linux-amd64.tar.gz && \
 tar -xzf go$GOVERS.linux-amd64.tar.gz && \
@@ -56,8 +56,8 @@ wget -q -O honeymarker https://honeycomb.io/download/honeymarker/linux/1.9 && \
   sudo mv honeymarker /usr/bin"
 
 # Install latest version of Terraform
-echo "RUN git clone https://github.com/kamatama41/tfenv.git $HOME/.tfenv && \
-export PATH=\"$HOME/.tfenv/bin:$PATH\" && \
+echo "RUN git clone https://github.com/kamatama41/tfenv.git /root/.tfenv && \
+export PATH=\"/root/.tfenv/bin:$PATH\" && \
 tfenv install latest"
 
 echo "RUN apt-get install -y python2.7 && \
