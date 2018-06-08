@@ -4,9 +4,9 @@ image_config: &image_config
   # either as project-specific environment variables
   # or as resources in your organization's org-global Context
 
-  IMAGE_NAME: kp-test-1
+  IMAGE_NAME: lambda
 
-  IMAGE_TAG: kp-test
+  IMAGE_TAG: latest
 
   # NOTE: if you're modifying this config.yml file manually
   # rather than using the included setup script,
