@@ -40,7 +40,9 @@ fi
 echo "RUN apt-get install -y unzip sudo rsync parallel tar jq wget"
 
 # Install Golang
-echo "RUN wget https://storage.googleapis.com/golang/go$GOVERS.linux-amd64.tar.gz && \
+echo "RUN export GOPATH=\"$HOME/gowork$GOVERS\" && \
+export GOROOT=\"/usr/local/go$GOVERS\" && \
+wget https://storage.googleapis.com/golang/go$GOVERS.linux-amd64.tar.gz && \
 tar -xzf go$GOVERS.linux-amd64.tar.gz && \
 mv go /usr/local/go$GOVERS && \
 rm go$GOVERS.linux-amd64.tar.gz && \
