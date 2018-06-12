@@ -75,7 +75,7 @@ tar -xvf /root/DynamoDBLocal/dynamodb_local_latest.tar.gz -C /root/DynamoDBLocal
 echo "RUN wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
 apt-get -y install apt-transport-https && \
 echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' | tee -a /etc/apt/sources.list.d/elastic-5.x.list && \
-apt-get update && apt-get -y install elasticsearch
+apt-get update && apt-get -y install elasticsearch && \
 /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-icu"
 ## END Fender-specific items ##
 
