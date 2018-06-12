@@ -37,7 +37,7 @@ fi
 
 ## Fender-specific items ##
 
-echo "RUN apt-get install -y unzip sudo rsync parallel tar jq wget"
+echo "RUN apt-get install -y unzip rsync parallel tar jq wget"
 
 # Install Golang
 echo "RUN export GOPATH=\"/root/gowork$GOVERS\" && \
@@ -53,19 +53,30 @@ go get github.com/mattn/goveralls && \
 wget -q -O honeymarker https://honeycomb.io/download/honeymarker/linux/1.9 && \
   echo 'e74514a2baaf63a5828ff62ca2ca1aa86b3a4ab223ab6a7c53f969d7b55e37fb  honeymarker' | sha256sum -c && \
   chmod 755 ./honeymarker && \
-  sudo mv honeymarker /usr/bin"
+  mv honeymarker /usr/bin"
 
 # Install latest version of Terraform
 echo "RUN git clone https://github.com/kamatama41/tfenv.git /root/.tfenv && \
 export PATH=\"/root/.tfenv/bin:$PATH\" && \
 tfenv install latest"
 
+# Install Ansible
 echo "RUN apt-get install -y python2.7 && \
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1 && \
 apt-get -y install python-simplejson python-minimal aptitude python-pip python-dev && \
 pip install google_compute_engine boto boto3 botocore six awscli 'ansible==2.5.0'"
-# Install Ansible
 
+# Install local DynamoDB
+echo "RUN mkdir /root/DynamoDBLocal && \
+wget https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz -P /root/DynamoDBLocal/ && \
+tar -xvf /root/DynamoDBLocal/dynamodb_local_latest.tar.gz -C /root/DynamoDBLocal/"
+
+# Install local Elasticsearch
+echo "RUN wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
+apt-get -y install apt-transport-https && \
+echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' | tee -a /etc/apt/sources.list.d/elastic-5.x.list && \
+apt-get update && apt-get -y install elasticsearch
+/usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-icu"
 ## END Fender-specific items ##
 
 # if [ ! -e $PHP_VERSION_NUM ] ; then
