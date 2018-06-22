@@ -106,7 +106,8 @@ apt-get update && apt-get -y install elasticsearch=5.5.3 && \
 /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-icu"
 
 # Install additional end2end-related items
-echo "RUN pip install sh"
+echo "RUN pip install sh && \
+apt-get install postgresql postgresql-contrib"
 
 ## END Fender-specific items ##
 
