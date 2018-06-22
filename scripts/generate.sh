@@ -104,6 +104,10 @@ apt-get -y install apt-transport-https && \
 echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' | tee -a /etc/apt/sources.list.d/elastic-5.x.list && \
 apt-get update && apt-get -y install elasticsearch=5.5.3 && \
 /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-icu"
+
+# Install additional end2end-related items
+echo "RUN pip install sh"
+
 ## END Fender-specific items ##
 
 # if [ ! -e $PHP_VERSION_NUM ] ; then
