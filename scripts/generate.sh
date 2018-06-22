@@ -107,7 +107,7 @@ apt-get update && apt-get -y install elasticsearch=5.5.3 && \
 
 # Install additional end2end-related items
 echo "RUN pip install sh && \
-apt-get install postgresql postgresql-contrib"
+apt-get -y install postgresql postgresql-contrib"
 
 ## END Fender-specific items ##
 
