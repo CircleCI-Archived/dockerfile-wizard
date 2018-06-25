@@ -109,6 +109,10 @@ apt-get update && apt-get -y install elasticsearch=5.5.3 && \
 echo "RUN pip install sh && \
 apt-get -y install postgresql postgresql-contrib"
 
+echo "RUN mkdir -p /usr/local/pgsql/data"
+echo "RUN chown -R postgres:postgres /usr/local/pgsql"
+echo "RUN su -c '/usr/lib/postgresql/9.5/bin/initdb -D /usr/local/pgsql/data' postgres"
+
 ## END Fender-specific items ##
 
 # if [ ! -e $PHP_VERSION_NUM ] ; then
