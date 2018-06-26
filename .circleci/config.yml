@@ -41,9 +41,9 @@ jobs:
 
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$CIRCLE_BRANCH .
+      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:lambda_$CIRCLE_BRANCH .
 
-      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$CIRCLE_BRANCH && sleep 10
+      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:lambda_$CIRCLE_BRANCH && sleep 10
 
       - store_artifacts:
           path: Dockerfile
