@@ -85,7 +85,7 @@ wget -q -O honeymarker https://honeycomb.io/download/honeymarker/linux/1.9 && \
 # Install latest version of Terraform
 echo "RUN git clone https://github.com/kamatama41/tfenv.git /root/.tfenv && \
 export PATH=\"/root/.tfenv/bin:$PATH\" && \
-tfenv install latest"
+tfenv install latest:^0.11"
 
 # Install Ansible
 echo "RUN apt-get install -y python2.7 && \
