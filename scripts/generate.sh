@@ -35,19 +35,15 @@ if [ ! -e $PYTHON_VERSION_NUM ] ; then
     make install"
 fi
 
-# if [ ! -e $PHP_VERSION_NUM ] ; then
-#     wget "http://php.net/distributions/php-${PHP_VERSION_NUM}.tar.xz"
-# fi
-
 if [ $JAVA = "true" ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \\
     apt-get update && apt-get -y install -t jessie-backports openjdk-8-jdk ca-certificates-java \\
 ; elif [ \$(grep 'VERSION_ID="9"' /etc/os-release) ] ; then \\
-		apt-get update && apt-get -y -q --no-install-recommends install -t stable openjdk-8-jdk ca-certificates-java \\
+    apt-get update && apt-get -y -q --no-install-recommends install -t stable openjdk-8-jdk ca-certificates-java \\
 ; elif [ \$(grep 'VERSION_ID="14.04"' /etc/os-release) ] ; then \\
-		apt-get update && \\
+    apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
     echo | add-apt-repository -y ppa:webupd8team/java && \\
     apt-get update && \\
@@ -65,6 +61,62 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
 ; fi
 EOF
 fi
+
+## Fender-specific items ##
+
+echo "RUN apt-get install -y unzip rsync parallel tar jq wget"
+
+# Install Golang
+echo "RUN export GOPATH=\"/root/gowork$GOVERS\" && \
+export GOROOT=\"/usr/local/go$GOVERS\" && \
+wget https://storage.googleapis.com/golang/go$GOVERS.linux-amd64.tar.gz && \
+tar -xzf go$GOVERS.linux-amd64.tar.gz && \
+mv go /usr/local/go$GOVERS && \
+rm go$GOVERS.linux-amd64.tar.gz && \
+mkdir gowork$GOVERS && \
+export PATH=\"/usr/local/go$GOVERS/bin:$PATH\" && \
+go get golang.org/x/tools/cmd/cover && \
+go get github.com/mattn/goveralls && \
+wget -q -O honeymarker https://honeycomb.io/download/honeymarker/linux/1.9 && \
+  echo 'e74514a2baaf63a5828ff62ca2ca1aa86b3a4ab223ab6a7c53f969d7b55e37fb  honeymarker' | sha256sum -c && \
+  chmod 755 ./honeymarker && \
+  mv honeymarker /usr/bin"
+
+# Install latest version of Terraform
+echo "RUN git clone https://github.com/kamatama41/tfenv.git /root/.tfenv && \
+export PATH=\"/root/.tfenv/bin:$PATH\" && \
+tfenv install latest:^0.11"
+
+# Install Ansible
+echo "RUN apt-get install -y python2.7 && \
+update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1 && \
+apt-get -y install python-simplejson python-minimal aptitude python-pip python-dev && \
+pip install google_compute_engine boto boto3 botocore six awscli 'ansible==2.6.2'"
+
+# Install local DynamoDB
+echo "RUN mkdir /root/DynamoDBLocal && \
+wget https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz -P /root/DynamoDBLocal/ && \
+tar -xvf /root/DynamoDBLocal/dynamodb_local_latest.tar.gz -C /root/DynamoDBLocal/"
+
+# Install local Elasticsearch
+echo "RUN wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
+apt-get -y install apt-transport-https && \
+echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' | tee -a /etc/apt/sources.list.d/elastic-5.x.list && \
+apt-get update && apt-get -y install elasticsearch=5.5.3 && \
+/usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-icu"
+
+# Install additional end2end-related items
+echo "RUN pip install sh && \
+apt-get -y install postgresql postgresql-contrib && \
+mkdir -p /usr/local/pgsql/data && \
+chown -R postgres:postgres /usr/local/pgsql && \
+su -c '/usr/lib/postgresql/9.5/bin/initdb -D /usr/local/pgsql/data' postgres"
+
+## END Fender-specific items ##
+
+# if [ ! -e $PHP_VERSION_NUM ] ; then
+#     wget "http://php.net/distributions/php-${PHP_VERSION_NUM}.tar.xz"
+# fi
 
 if [ $MYSQL_CLIENT = "true" ] ; then
     echo "RUN apt-get -y install mysql-client"
