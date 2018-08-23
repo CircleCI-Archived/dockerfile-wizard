@@ -91,7 +91,7 @@ tfenv install latest:^0.11"
 echo "RUN apt-get install -y python2.7 && \
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1 && \
 apt-get -y install python-simplejson python-minimal aptitude python-pip python-dev && \
-pip install google_compute_engine boto boto3 botocore six awscli 'ansible==2.5.0'"
+pip install google_compute_engine boto boto3 botocore six awscli 'ansible==2.6.2'"
 
 # Install local DynamoDB
 echo "RUN mkdir /root/DynamoDBLocal && \
