@@ -5,18 +5,9 @@ image_config: &image_config
   # or as resources in your organization's org-global Context
 
   IMAGE_NAME: DEEP_LEARNING_GPU
-
   IMAGE_TAG: GPU
-
-  # NOTE: if you're modifying this config.yml file manually
-  # rather than using the included setup script,
-  # make sure you also add the values of your IMAGE_NAME & IMAGE_TAG variables
-  # to the `test_image` job (line 55)
-
   LINUX_VERSION: UBUNTU_XENIAL
-
   PYTHON_VERSION_NUM: 3.6.4
-
   DOCKERIZE: false
 
 version: 2
@@ -29,16 +20,13 @@ jobs:
     steps:
       - checkout
 
-##      - run: bash scripts/generate.sh > Dockerfile
+      - run: bash scripts/generate.sh > Dockerfile
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
+      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
 
-##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-
-##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
-
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
-
-##      - store_artifacts:
-##          path: Dockerfile
+      - store_artifacts:
+          path: Dockerfile
 
 ##  test_image:
 ##    docker:
@@ -68,14 +56,14 @@ jobs:
 ##      - store_artifacts:
 ##          path: test_results
 
-##workflows:
-##  version: 2
-##  dockerfile_wizard:
-##    jobs:
-##      - build:
-##          context: org-global
+workflows:
+  version: 2
+  dockerfile_wizard:
+    jobs:
+      - build:
+          context: org-global
 
-##      - test_image:
-##          context: org-global
-##          requires:
-##            - build
+      - test_image:
+          context: org-global
+          requires:
+            - build
