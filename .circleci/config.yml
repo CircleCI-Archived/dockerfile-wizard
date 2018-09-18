@@ -18,7 +18,8 @@ jobs:
     steps:
       - checkout
 
-      
+      # API Key:
+      #cWQxdW4ydmxnc2pvcnNtNW5rcTA0dnY0Yzk6MjQxMTc2ZjMtMDEyNi00NDk2LWFlZmYtMmYwMWRmODQ2ZTBi
       - run: docker login nvcr.io -u \$oauthtoken -p $NVIDIA_DOCKER_OAUTH_KEY
       - run: docker pull nvcr.io/nvidia/tensorflow:18.08-py3
       
@@ -29,33 +30,33 @@ jobs:
       - store_artifacts:
           path: Dockerfile
 
-##  test_image:
-##    docker:
-##      - image: $DOCKER_USERNAME/(name of image):(image tag)
-##        environment:
-##          <<: *image_config
+  test_image:
+    docker:
+      - image: $DOCKER_USERNAME/(name of image):(image tag)
+        environment:
+          <<: *image_config
 
-##    steps:
-##      - checkout
+    steps:
+      - checkout
 
-##      - run:
-##          name: start Xvfb for phantomjs test
-##          command: Xvfb :99
-##          background: true
+      - run:
+          name: start Xvfb for phantomjs test
+          command: Xvfb :99
+          background: true
 
-##      - run:
-##          name: bats tests
-##          command: |
-##            mkdir -p test_results/bats
-##            bats scripts/tests.bats | \
-##            perl scripts/tap-to-junit.sh > \
-##            test_results/bats/results.xml
+      - run:
+          name: bats tests
+          command: |
+            mkdir -p test_results/bats
+            bats scripts/tests.bats | \
+            perl scripts/tap-to-junit.sh > \
+            test_results/bats/results.xml
 
-##      - store_test_results:
-##          path: test_results
+      - store_test_results:
+          path: test_results
 
-##      - store_artifacts:
-##          path: test_results
+      - store_artifacts:
+          path: test_results
 
 workflows:
   version: 2
