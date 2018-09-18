@@ -19,11 +19,11 @@ Create a DOCKER_HUB context and set the security to PUBLIC
 
 **2. Add the following environment variables
 
-Docker Hub username (`DOCKER_USERNAME`) 
-Docker Hub password (`DOCKER_PASSWORD`) 
-NVidia Docker Hub OAuth key (`NVIDIA_DOCKER_OAUTH_KEY`)
+- Docker Hub username (`DOCKER_USERNAME`) 
+- Docker Hub password (`DOCKER_PASSWORD`) 
+- NVidia Docker Hub OAuth key (`NVIDIA_DOCKER_OAUTH_KEY`)
 
-The NVidia key is used to access their private Docker Repo so we can download their source image.
+The NVidia key is used to access their private Docker Repo so we can download their source image nvcr.io/nvidia/tensorflow:18.08-py3
 
 ![Environment Variables](https://raw.githubusercontent.com/CircleCI-Public/dockerfile-wizard/master/img/env%20vars.jpg "Environment Variables")
 
