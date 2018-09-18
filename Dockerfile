@@ -46,7 +46,7 @@ RUN pip install \
     jupyter \
     jupyterlab \
     theano \ 
-    pytorch \
+#    pytorch \
     keras \
     imutils \
     pillow \
@@ -56,13 +56,13 @@ RUN pip install \
 # Prepare Environment #
 #+#+#+#+#+#+#+#+#+#+#+#
 
-COPY ./container-files/jupyter_notebook_config.py /root/
-RUN ls -alh /root/
+RUN mkdir /root/.jupyter && chmod a+rwx /root/.jupyter
+COPY ./container-files/jupyter_notebook_config.py /root/.jupyter/
 
 RUN mkdir /media/notebooks && chmod a+rwx /media/notebooks
 RUN mkdir /.local && chmod a+rwx /.local
 WORKDIR /media/notebooks
 EXPOSE 8888
 
-CMD [jupyter notebook --notebook-dir=/media/notebooks --ip 0.0.0.0 --no-browser --allow-root --port=8888"]
+CMD [jupyter notebook --notebook-dir=/media/notebooks --no-browser --allow-root --port=8888"]
 

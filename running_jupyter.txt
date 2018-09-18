@@ -1,0 +1,8 @@
+As of 2018-09-18 1048
+To run jupyter from a container derrived from the image in detached mode you'll have to use the folllowing command:
+nvidia-docker run -d --name test-1 -p 8888:8888 base:test-jl-01 /usr/local/bin/jupyter notebook --no-browser --allow-root --port=8888
+
+Note the image reference is for the development image on deepripper.  Just replace base:test-jl-01 with the correct image name.  In addition you may 
+want to change the container name.
+
+Yes you need to use nvidia-docker or if you use the docker command you will need to use the runtime option and specifiy nvidia.  If not then the container will not have access to the gpus. 
