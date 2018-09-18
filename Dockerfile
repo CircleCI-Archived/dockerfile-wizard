@@ -30,7 +30,7 @@ RUN rm -rf /var/lib/apt/lists/
 # Install & Update Anaconda 3 #
 ###############################
 RUN cd /tmp
-curl -O https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+RUN curl -O https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
 RUN bash /tmp/Anaconda3-5.2.0-Linux-x86_64.sh -b -p /opt/anaconda3
 RUN rm -rf /tmp/Anaconda3-5.2.0-Linux-x86_64.sh
 RUN /opt/anaconda3/bin/conda upgrade conda -y
