@@ -11,7 +11,8 @@ image_config: &image_config
 version: 2
 jobs:
   build:
-    machine: true
+    machine: 
+        docker_layer_caching: true
     environment:
       <<: *image_config
 
@@ -32,7 +33,7 @@ jobs:
 
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/(name of image):(image tag)
+      - image: $DOCKER_ORGANIZATION/$IMAGE_NAME:$IMAGE_TAG
         environment:
           <<: *image_config
 
