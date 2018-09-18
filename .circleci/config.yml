@@ -4,8 +4,8 @@ image_config: &image_config
   # either as project-specific environment variables
   # or as resources in your organization's org-global Context
 
-  IMAGE_NAME: DEEP_LEARNING_GPU
-  IMAGE_TAG: GPU
+  IMAGE_NAME: deep_learning_nvidia_gpu
+  IMAGE_TAG: gpu
   LINUX_VERSION: UBUNTU_XENIAL
   PYTHON_VERSION_NUM: 3.6.4
   DOCKERIZE: false
