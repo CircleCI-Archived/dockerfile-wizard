@@ -5,46 +5,48 @@ Easily build Docker images with different versions/combinations of common langua
 ## Prerequisites
 
 - [CircleCI account](https://circleci.com/signup)
-- [Docker Hub account](https://hub.docker.com) (Docker itself **does not** need to be installed on your computer)
-- [Make](https://en.wikipedia.org/wiki/Make_(software)) & [Perl](https://perl.org) (included in most macOS & Linux installations)
+- [Docker Hub account] https://hub.docker.com/r/midscapstone/docker_images/
+- [Git account] https://github.com/MIDS-Capstone/dockerfile-wizard
 
-## Usage
+## Setup
 
-**1. Fork this repository and start building it on CircleCI:**
+**1. In CircleCI, login and then go to Settings >> MIDS-Capstone >> Organization >> Contexts 
 
-![Setup Project](https://raw.githubusercontent.com/CircleCI-Public/dockerfile-wizard/master/img/setup%20project.jpg "Setup Project")
+Create a DOCKER_HUB context and set the security to PUBLIC
 
-**2. Add your Docker Hub username (`DOCKER_USERNAME`) and password (`DOCKER_PASSWORD`) to CircleCI, either as project-specific environment variables (shown below), or as resources in your **org-global** (default) [Context](https://circleci.com/docs/2.0/contexts)**
+[Context](https://circleci.com/docs/2.0/contexts)
+[MIDS-Capstone Context](https://circleci.com/gh/organizations/MIDS-Capstone/settings#contexts)
+
+**2. Add the following environment variables
+
+Docker Hub username (`DOCKER_USERNAME`) 
+Docker Hub password (`DOCKER_PASSWORD`) 
+NVidia Docker Hub OAuth key (`NVIDIA_DOCKER_OAUTH_KEY`)
+
+The NVidia key is used to access their private Docker Repo so we can download their source image.
 
 ![Environment Variables](https://raw.githubusercontent.com/CircleCI-Public/dockerfile-wizard/master/img/env%20vars.jpg "Environment Variables")
 
-**3.** Clone your fork of the project onto your computer
+**3.** Download this git repo https://github.com/MIDS-Capstone/dockerfile-wizard
 
-**4.** Enter the cloned `dockerfile-wizard` directory and run `make ready` to prepare the `config.yml` file for building Docker images on CircleCI
+**4.** Create a branch for your build fb-INITIALS-some-info
 
-**5.** Run `make setup` in the cloned directory, or else manually add the versions/dependencies that you need to `.circleci/config.yml` as specified in the [`image_config` section](https://github.com/CircleCI-Public/dockerfile-wizard/blob/master/.circleci/config.yml)
+**5.** Amend the build as necessary preparing the `config.yml` file and any shell scripts you need for building Docker images on CircleCI
 
 **6.** Commit and push your changes
 
 Once the build has finished, your image will be available at `http://hub.docker.com/r/DOCKER_USERNAME/IMAGE_NAME` and can be used in other projects building on CircleCI (or anywhere else!). The Dockerfile for your image will be stored as an artifact in this project's `build` job.
 
-To use the Dockerfile Wizard again, run `make reset` in the cloned directory, then repeat steps **4-6**.
-
 ### How it works
 
-1. The `setup` script adds your requested version information to the config.yml file as environment variables
-1. The `generate.sh` script runs on CircleCI and generates a Dockerfile based on those environment variables
 1. CircleCI builds your Docker image from the generated Dockerfile, deploys it using your Docker credentials, and then tests your image using [Bats](https://github.com/sstephenson/bats), which we install in every Docker image built via this repository
 
 ### Notes
 
-- The portions of this repository that run on your local computer are intended for Linux/macOS operating systems; they may not work on Windows
-- This repository has not been tested with every possible permutation of versions/dependencies, and you may encounter errors with some combinations of various languages/tools. If your `build` job fails, check its `docker build` step—there's likely a compilation error with a particular version of Ruby, Node, or Python.
-- Thanks to [jmason](https://github.com/jmason/tap-to-junit-xml) for the `tap-to-junit` script!
 - [Feedback/questions/bugs welcome!](https://github.com/CircleCI-Public/dockerfile-wizard/issues)
 - Want to do all this yourself? Check out our video on [creating custom Docker images for CircleCI](https://youtube.com/watch?v=JYVLeguIbe0)
 
 ### To-do
 
-- Add PHP support
-- Add support for other container registries
+- Change the way the docker images are layered 
+- Remove Anaconda ( replacing with pip install ) and 
