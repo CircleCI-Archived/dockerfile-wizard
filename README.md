@@ -48,5 +48,7 @@ Once the build has finished, your image will be available at `http://hub.docker.
 
 ### To-do
 
-- Change the way the docker images are layered 
-- Remove Anaconda ( replacing with pip install ) and 
+- Add the raw NVIDIA image to our docker hub repo ( and make it optional to fetch from the source NVIDIA repo ) 
+- Change the way the docker images are layered ( and maybe have a base image ) onto which we layer everything else
+- Remove Anaconda ( replacing with pip install and pip env)
+- Collapse some of the RUN cmds into larger blocks to minimize layering in docker image
