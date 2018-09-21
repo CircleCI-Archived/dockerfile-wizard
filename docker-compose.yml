@@ -1,9 +1,12 @@
-version: "3"
+version: "2.3"
 services: 
   notebook:
-    build: .
+#    build: .
+    image: midscapstone/base:dev-v01 
+    runtime: nvidia
     ports: 
       - "8888:8888"
     volumes: 
       - ".:/media/notebooks"
     command: jupyter notebook --no-browser
+    
