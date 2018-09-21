@@ -1,0 +1,9 @@
+version: "3"
+services: 
+  notebook:
+    build: .
+    ports: 
+      - "8888:8888"
+    volumes: 
+      - ".:/media/notebooks"
+    command: jupyter notebook --no-browser
