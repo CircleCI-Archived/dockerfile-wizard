@@ -11,25 +11,20 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
         apt-utils \
         build-essential \
-	ca-certificates \
+        ca-certificates \
         bzip2 \
         cmake \
         curl \
         git \
-	gzip \
+        gzip \
         libopenblas-dev \
-	ssh \
-	tar \
+        ssh \
+        tar \
         unzip \
         vim \
         wget
-		
+
 RUN rm -rf /var/lib/apt/lists/
-
-
-##+#+#+#+#+#+#+#+#
-# Infrastructure #
-##+#+#+#+#+#+#+#+#
 
 ##############
 # Update PIP #
@@ -40,21 +35,21 @@ RUN pip install --upgrade pip
 # Install Python Packages #
 ###########################
 RUN pip install \
-    numpy==1.15.1 \
-    scipy==1.1.0 \
-    pandas==0.23.4 \
-    pipenv==2018.7.1 \
+    numpy \
+    scipy \
+    pandas \
+    pipenv \
     pipenv-tools \
-    virtualenv==16.0.0 \
+    virtualenv \
     scikit-learn \
     jupyter \
     jupyterlab \
-    theano \ 
+    theano \
     keras \
     imutils \
     pillow \
     lxml
-	
+
 #+#+#+#+#+#+#+#+#+#+#+#
 # Prepare Environment #
 #+#+#+#+#+#+#+#+#+#+#+#
@@ -66,6 +61,4 @@ RUN mkdir /media/notebooks && chmod a+rwx /media/notebooks
 RUN mkdir /.local && chmod a+rwx /.local
 WORKDIR /media/notebooks
 EXPOSE 8888
-
-CMD [jupyter notebook --notebook-dir=/media/notebooks --no-browser --allow-root --port=8888"]
 
