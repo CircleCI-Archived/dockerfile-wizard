@@ -22,19 +22,37 @@ RUN apt-get install -y --no-install-recommends \
         tar \
         unzip \
         vim \
-        wget
+        wget \
+	libxml-generator-perl
 
 RUN rm -rf /var/lib/apt/lists/
 
-##############
-# Update PIP #
-##############
-RUN pip install --upgrade pip
+##+#+#+#+#+#+#+#+#
+# Infrastructure #
+##+#+#+#+#+#+#+#+#
 
-###########################
-# Install Python Packages #
-###########################
-RUN pip install \
+#####################
+# Install Dockerize #
+#####################
+RUN DOCKERIZE_URL="https://circle-downloads.s3.amazonaws.com/circleci-images/cache/linux-amd64/dockerize-latest.tar.gz" \
+  && curl --silent --show-error --location --fail --retry 3 --output /tmp/dockerize-linux-amd64.tar.gz $DOCKERIZE_URL \
+  && tar -C /usr/local/bin -xzvf /tmp/dockerize-linux-amd64.tar.gz \
+  && rm -rf /tmp/dockerize-linux-amd64.tar.gz \
+  && dockerize --version
+
+#############################
+# Install BATS for testing  #
+#############################
+RUN git clone https://github.com/bats-core/bats-core &&\
+		cd bats-core &&\
+		./install.sh /usr/local
+
+
+#########################################
+# Update pip & Install Python Packages #
+########################################
+RUN pip install --upgrade pip && \
+    pip install \
     numpy \
     scipy \
     pandas \
@@ -49,6 +67,7 @@ RUN pip install \
     imutils \
     pillow \
     lxml
+
 
 #+#+#+#+#+#+#+#+#+#+#+#
 # Prepare Environment #
