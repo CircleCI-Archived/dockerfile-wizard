@@ -64,7 +64,7 @@ fi
 
 ## Fender-specific items ##
 
-echo "RUN apt-get install -y unzip rsync parallel tar jq wget"
+echo "RUN apt-get install -y zip unzip rsync parallel tar jq wget"
 
 # Install Golang
 echo "RUN export GOPATH=\"/root/gowork$GOVERS\" && \
