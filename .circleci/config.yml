@@ -62,11 +62,6 @@ jobs:
       - checkout
 
       - run:
-          name: start Xvfb for phantomjs test
-          # command: Xvfb :99
-          # background: true
-
-      - run:
           name: bats tests
           command: |
             mkdir -p test_results/bats
