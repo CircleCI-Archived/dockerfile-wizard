@@ -4,7 +4,7 @@ image_config: &image_config
   # either as project-specific environment variables
   # or as resources in your organization's org-global Context
 
-  IMAGE_NAME: ubuntu-16.04-openjdk-8
+  IMAGE_NAME: circleci
 
   IMAGE_TAG: 16.04
 
@@ -15,11 +15,11 @@ image_config: &image_config
 
   LINUX_VERSION: UBUNTU_XENIAL
 
-  RUBY_VERSION_NUM: 2.4.2
+  RUBY_VERSION_NUM: 1.9.3
 
-  # # NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
+  # NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
 
-  # PYTHON_VERSION_NUM: 3.5
+  # PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
 
   JAVA: true
 
@@ -54,7 +54,7 @@ jobs:
 
   test_image:
     docker:
-      - image: $DOCKER_USERNAME/ubuntu-16.04-openjdk-8:16.04
+      - image: $DOCKER_USERNAME/circleci:16.04
         environment:
           <<: *image_config
 
@@ -63,8 +63,8 @@ jobs:
 
       - run:
           name: start Xvfb for phantomjs test
-          # # command: Xvfb :99
-          # # background: true
+          # command: Xvfb :99
+          # background: true
 
       - run:
           name: bats tests
