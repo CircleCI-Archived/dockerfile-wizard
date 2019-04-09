@@ -15,7 +15,7 @@ image_config: &image_config
 
   LINUX_VERSION: UBUNTU_XENIAL
 
-  RUBY_VERSION_NUM: 1.9.3
+  RUBY_VERSION_NUM: 2.4.2
 
   # NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
 
