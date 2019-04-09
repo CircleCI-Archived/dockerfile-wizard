@@ -17,9 +17,9 @@ image_config: &image_config
 
   RUBY_VERSION_NUM: 2.4.2
 
-  # NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
+  # # NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
 
-  PYTHON_VERSION_NUM: 3.5
+  # PYTHON_VERSION_NUM: 3.5
 
   JAVA: true
 
@@ -63,8 +63,8 @@ jobs:
 
       - run:
           name: start Xvfb for phantomjs test
-          # command: Xvfb :99
-          # background: true
+          # # command: Xvfb :99
+          # # background: true
 
       - run:
           name: bats tests
