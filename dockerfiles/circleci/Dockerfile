@@ -16,11 +16,8 @@ RUN apt-get update \
 # Java 8
 RUN apt-get update \
 	&& apt-get -y install software-properties-common python-software-properties \
-	&& add-apt-repository -y ppa:webupd8team/java \
 	&& apt-get update \
-	&& echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
-	&& echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections \
-	&& apt-get -y install oracle-java8-installer \
+	&& apt-get -y install openjdk-8-jdk \
 	&& mkdir -p /usr/lib/jvm/java-8-openjdk-amd64/jre/bin \
 	&& ln -s /usr/bin/java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
