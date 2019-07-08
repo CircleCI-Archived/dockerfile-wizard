@@ -113,6 +113,12 @@ chown -R postgres:postgres /usr/local/pgsql && \
 su -c '/usr/lib/postgresql/9.5/bin/initdb -D /usr/local/pgsql/data' postgres"
 
 ## END Fender-specific items ##
+## Fender-dub-specific items ##
+echo "RUN git clone https://github.com/pyenv/pyenv.git /opt/.pyenv"
+
+echo "ENV PYENV_ROOT \"/opt/.pyenv\""
+echo "ENV PATH \"/opt/.pyenv/bin/:$PATH\""
+## END Fender-dub-specific items ##
 
 # if [ ! -e $PHP_VERSION_NUM ] ; then
 #     wget "http://php.net/distributions/php-${PHP_VERSION_NUM}.tar.xz"
