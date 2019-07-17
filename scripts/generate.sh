@@ -45,26 +45,26 @@ RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
 ; elif [ \$(grep 'VERSION_ID="14.04"' /etc/os-release) ] ; then \\
     apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
-    echo | add-apt-repository -y ppa:webupd8team/java && \\
-    apt-get update && \\
     echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \\
     echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \\
-    apt-get -y install oracle-java8-installer \\
+    cd /var/tmp/ && \\
+    wget -O oracle_java8.deb debian.opennms.org/dists/opennms-23/main/binary-all/oracle-java8-installer_8u131-1~webupd8~2_all.deb && \\
+    dpkg -i oracle_java8.deb || echo "ok" && apt-get -f install -yq \\
 ; elif [ \$(grep 'VERSION_ID="16.04"' /etc/os-release) ] ; then \\
     apt-get update && \\
     apt-get --force-yes -y install software-properties-common python-software-properties && \\
-    echo | add-apt-repository -y ppa:webupd8team/java && \\
-    apt-get update && \\
     echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \\
     echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections && \\
-    apt-get -y install oracle-java8-installer \\
+    cd /var/tmp/ && \\
+    wget -O oracle_java8.deb debian.opennms.org/dists/opennms-23/main/binary-all/oracle-java8-installer_8u131-1~webupd8~2_all.deb && \\
+    dpkg -i oracle_java8.deb || echo "ok" && apt-get -f install -yq \\
 ; fi
 EOF
 fi
 
 ## Fender-specific items ##
 
-echo "RUN apt-get install -y zip unzip rsync parallel tar jq wget"
+echo "RUN apt-get install -y zip unzip rsync parallel tar jq wget vim less htop"
 
 # Install Golang
 echo "RUN export GOPATH=\"/root/gowork$GOVERS\" && \
@@ -91,7 +91,7 @@ tfenv install latest:^0.11"
 echo "RUN apt-get install -y python2.7 && \
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1 && \
 apt-get -y install python-simplejson python-minimal aptitude python-pip python-dev && \
-pip install google_compute_engine boto boto3 botocore six awscli 'ansible==2.6.2'"
+pip install google_compute_engine boto boto3 botocore six awscli 'ansible==2.6.2' 'PyYAML==3.12'"
 
 # Install local DynamoDB
 echo "RUN mkdir /root/DynamoDBLocal && \
@@ -113,6 +113,12 @@ chown -R postgres:postgres /usr/local/pgsql && \
 su -c '/usr/lib/postgresql/9.5/bin/initdb -D /usr/local/pgsql/data' postgres"
 
 ## END Fender-specific items ##
+## Fender-dub-specific items ##
+echo "RUN git clone https://github.com/pyenv/pyenv.git /opt/.pyenv"
+echo "ENV PYENV_ROOT \"/opt/.pyenv\""
+echo "ENV PATH \"/opt/.pyenv/bin/:$PATH\""
+echo "RUN pyenv install 3.7.0"
+## END Fender-dub-specific items ##
 
 # if [ ! -e $PHP_VERSION_NUM ] ; then
 #     wget "http://php.net/distributions/php-${PHP_VERSION_NUM}.tar.xz"
