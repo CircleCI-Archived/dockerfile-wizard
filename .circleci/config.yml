@@ -17,7 +17,7 @@ image_config: &image_config
 
   RUBY_VERSION_NUM: # pick a version from https://cache.ruby-lang.org/pub/ruby
 
-  NODE_VERSION_NUM: # pick a version from https://nodejs.org/dist
+  NODE_VERSION_NUM: 4.4.7 # pick a version from https://nodejs.org/dist
 
   PYTHON_VERSION_NUM: # pick a version from https://python.org/ftp/python
 
@@ -41,53 +41,53 @@ jobs:
     steps:
       - checkout
 
-##      - run: bash scripts/generate.sh > Dockerfile
+      - run: bash scripts/generate.sh > Dockerfile
 
-##      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-##      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
+      - run: docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
 
-##      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
+      - run: docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG && sleep 10
 
-##      - store_artifacts:
-##          path: Dockerfile
+      - store_artifacts:
+          path: Dockerfile
 
-##  test_image:
-##    docker:
-##      - image: $DOCKER_USERNAME/(name of image):(image tag)
-##        environment:
-##          <<: *image_config
+  test_image:
+    docker:
+      - image: $DOCKER_USERNAME/(name of image):(image tag)
+        environment:
+          <<: *image_config
 
-##    steps:
-##      - checkout
+    steps:
+      - checkout
 
-##      - run:
-##          name: start Xvfb for phantomjs test
-##          command: Xvfb :99
-##          background: true
+      - run:
+          name: start Xvfb for phantomjs test
+          command: Xvfb :99
+          background: true
 
-##      - run:
-##          name: bats tests
-##          command: |
-##            mkdir -p test_results/bats
-##            bats scripts/tests.bats | \
-##            perl scripts/tap-to-junit.sh > \
-##            test_results/bats/results.xml
+      - run:
+          name: bats tests
+          command: |
+            mkdir -p test_results/bats
+            bats scripts/tests.bats | \
+            perl scripts/tap-to-junit.sh > \
+            test_results/bats/results.xml
 
-##      - store_test_results:
-##          path: test_results
+      - store_test_results:
+          path: test_results
 
-##      - store_artifacts:
-##          path: test_results
+      - store_artifacts:
+          path: test_results
 
-##workflows:
-##  version: 2
-##  dockerfile_wizard:
-##    jobs:
-##      - build:
-##          context: org-global
+workflows:
+  version: 2
+  dockerfile_wizard:
+    jobs:
+      - build:
+          context: org-global
 
-##      - test_image:
-##          context: org-global
-##          requires:
-##            - build
+      - test_image:
+          context: org-global
+          requires:
+            - build
